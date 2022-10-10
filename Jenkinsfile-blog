@@ -1,0 +1,87 @@
+#!groovy
+@Library('lmc-jenkins2-shared-library@master')
+import eu.lmc.pipeline.DockerRegistry
+
+pipeline {
+    environment {
+        // variables
+        def service = "blog"
+        def image_name = "engineering-$service"
+        def registry = "dcreg.service.consul"
+    }
+    
+    agent any
+    
+    stages {
+        stage('Check env') {
+        steps {
+          script {
+            echo sh(returnStdout: true, script: 'env').trim()
+          }
+        }
+      }
+    
+        stage('Checkout Repos') {
+            steps {
+                script {
+                    // cleanup workspace
+                    step([$class: 'WsCleanup'])
+            
+                    // checkout project
+                    git url: 'ssh://git@bitbucket.lmc.cz:7999/archi/engineering-blog.git', branch: "$env.BRANCH_NAME"
+                    
+                    
+                    version = readFile("VERSION")
+                    gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                    def shortCommit = gitCommit.take(11)
+                }
+            }
+        }
+
+        stage('Build and Tagging') {
+            steps {
+                script {
+                    // build image
+                    sh "docker build --rm --label gitCommit=$gitCommit -t $image_name -f Dockerfile-$service ."
+            
+                    sh "echo git commit $gitCommit"
+                    sh "echo version $version"
+            
+                    // remove untagged images
+              //      sh "docker images -q -f dangling=true --no-trunc $registry/$image_name | xargs --no-run-if-empty docker rmi"
+                }
+            }
+        }
+    
+        stage('Push to DEV Registry') {
+            steps {
+                script {
+                    //  pushing
+                    tagAndPushImageParallelIfNotExist('dev', "${image_name}", version)
+                }
+            }
+        }
+        
+        stage('Push to PROD Registry') {
+            steps {
+                script {
+                    //  pushing
+                    tagAndPushImageParallelIfNotExist('prod', "${image_name}", version)
+                }
+            }
+        }
+        
+        stage('Done') {
+            steps {
+                script {
+                    // cleanup workspace
+                    step([$class: 'WsCleanup'])
+            
+                    // be sure we have images
+                    sh "docker images $registry/$image_name"
+                    sh "printf The current docker images are:'\n'dcreg.service.consul/dev/${image_name}:$version'\n'dcreg.service.consul/prod/${image_name}:$version"
+                }
+            }
+        }      
+    }
+}

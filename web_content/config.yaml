@@ -1,0 +1,75 @@
+baseURL: "https://engineering-blog.service.dev2-ict.consul"
+metaDataFormat: "yaml"
+languageCode: "en-us"
+title: "Engineering Blog"
+theme: "blist"
+
+timeZone: Europe/Prague
+
+DefaultContentLanguage: "en"
+DefaultContentLanguageInSubdir: true
+enableEmoji: true
+
+languages:
+  en:
+    contentDir: content/en
+    weight: 1
+    languageName: English
+    params:
+#      introTitle: "Engineering Blog"
+#      introSubtitle: >-
+#        Docs, Tips & Tricks
+      introPhoto: /intro.png
+      logo: /logo.png
+    menu:
+      main:
+        - name: Tags
+          url: tags/
+          weight: 0
+        - name: "Blogs"
+          url: blogs/
+          weignt: 1
+
+params: {
+  darkModeToggle: true,
+  enableSearch: true,
+  copyright: "Copyright © 2022 - Developer Experience · All rights reserved",
+  favicon: "/favicon.svg",
+  # Color for the intro details and social links block, not applicable for dark mode - Supported values: Any color from TailwindCSS default colors. Reference: https://tailwindcss.com/docs/customizing-colors
+  ascentColor: "bg-pink-50",
+  # The page bundle that is shown on the front page
+  frontBundle: "blogs",
+  # Hide the post metadata (posted date, reading time, word count), can be used at site level or page level
+  hideMeta: false,
+  hideOtherLanguages: true,
+  homepage: {
+    social: {
+      title: "Connect,",
+      description: "be Awesome!",
+      instagram: "https://www.instagram.com/lmc_feeling/",
+      facebook: "https://www.facebook.com/LMC.eu/",
+      linkedin: "https://www.linkedin.com/company/lmc/",
+      youtube: "https://www.youtube.com/user/LMCnews",
+      twitter: "http://bit.ly/twLMC"
+    }
+  }
+}
+
+markup:
+  highlight:
+    style: dracula
+  goldmark:
+    renderer:
+      unsafe: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+build: {
+  writeStats: false
+}
+
+googleAnalytics: ""
