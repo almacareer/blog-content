@@ -28,7 +28,7 @@ pipeline {
                     step([$class: 'WsCleanup'])
             
                     // checkout project
-                    git url: 'ssh://git@github.com:lmc-eu/engineering-blog.git', branch: "$env.BRANCH_NAME"
+                    git url: 'ssh:/git@github.com:lmc-eu/engineering-blog.git', branch: "$env.BRANCH_NAME"
                     
                     
                     version = readFile("VERSION")
