@@ -1,6 +1,7 @@
 backend:
   name: github
-  repo: lmc-eu/netlify-test
+  repo: lmc-eu/engineering-blog
+
   branch: master
   auth_type: implicit
   base_url: https://github-oauth.service.dev2-ict.consul
