@@ -1,27 +1,19 @@
 ---
-author: "Ondřej Horák"
-title: "Zabezpečení Kafky"
-description: "Informace o zabezpečení Kafky v LMC"
-tags: ["kafka"]
+author: Ondřej Horák
+title: Zabezpečení Kafky
+description: Informace o zabezpečení Kafky v LMC
+tags:
+  - kafka
 date: 2022-10-11
 thumbnail: https://i.iinfo.cz/images/286/apache-kafka-1.jpg
 ---
+ℹ️ Tento dokument je zatím jen hodně hrubý nástřel, jak by to mohlo vypadat\
 
-# Kafka - Zabezpečení
-
-<aside>
-ℹ️ Tento dokument je zatím jen hodně hrubý nástřel, jak by to mohlo vypadat
-
-</aside>
-
-<aside>
 ⚠️ Máme připravené a funkční řešení zabezpečeného připojení ke Kafce. Je tedy doporučeno připojovat se zabezpečeně.
 
-</aside>
+Oficiální dokumentace Kafky: <https://kafka.apache.org/documentation/#security>
 
-Oficiální dokumentace Kafky: [https://kafka.apache.org/documentation/#security](https://kafka.apache.org/documentation/#security)
-
-Dokumentace na confluent.io: [https://docs.confluent.io/current/security/index.html](https://docs.confluent.io/current/security/index.html)
+Dokumentace na confluent.io: <https://docs.confluent.io/current/security/index.html>
 
 # Úvod
 
@@ -45,24 +37,24 @@ V subjectu certifikátu v OU bude nastaveno jméno role a identifikace Kafka clu
 
 Role budou minimálně následující:
 
-- pro zápis a čtení dat topiců: read, write, rw
-- pro administraci: admin
-- serverový certifikát a klíč pro komunikaci mezi brokery: server
+* pro zápis a čtení dat topiců: read, write, rw
+* pro administraci: admin
+* serverový certifikát a klíč pro komunikaci mezi brokery: server
 
 Pro každou roli a cluster bude ve Vaultu vytvořena PKI role (šablona), která bude vydávat certifikáty s předvyplněnými údaji v subjectu, které odpovídají clusteru a roli.
 
 Formát může být např. (uživatelská role read, Kafka cluster kfsupport, prostředí prod-rad):
 
-- jméno role ve Vaultu: `read_kfsupport_prod-rad`
-- OU: `read@kfsupport.prod-rad`.
+* jméno role ve Vaultu: `read_kfsupport_prod-rad`
+* OU: `read@kfsupport.prod-rad`.
 
 Žádost o přístup do Kafky by měl vydat tým, který ho potřebuje, po konzultaci s vlastníkem Kafky.
 
 # Vydávání certifikátů
 
-- serverový certifikát na Kafka brokerech by měl být zajištěn přes Consul Template;
-- klientský certifikát pro aplikace - TBD
-- klientský certifikát pro osoby - zatím zajistí vlastník Kafky, v budoucnu by mělo být vyřešeno nějakým (polo)automatizovaným způsobem
+* serverový certifikát na Kafka brokerech by měl být zajištěn přes Consul Template;
+* klientský certifikát pro aplikace - TBD
+* klientský certifikát pro osoby - zatím zajistí vlastník Kafky, v budoucnu by mělo být vyřešeno nějakým (polo)automatizovaným způsobem
 
 # Autorizace
 
