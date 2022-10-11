@@ -6,7 +6,7 @@ backend:
   base_url: https://github-oauth.service.dev2-ict.consul
     
 publish_mode: editorial_workflow
-media_folder: "web_content/pictures" # Media files will be stored in the repo under images/uploads
+media_folder: "web_content/static/pictures" # Media files will be stored in the repo under images/uploads
 collections:
   - name: "engineering-blog" # Used in routes, e.g., /admin/collections/blog
     label: "Engineering Blog" # Used in the UI

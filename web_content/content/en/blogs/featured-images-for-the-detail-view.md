@@ -5,7 +5,7 @@ description: Demo post which shows you the style of common used elements
 tags:
   - markdown
 date: 2022-09-16T11:43:05+02:00
-thumbnail: /web_content/pictures/featured-images-for-the-detail-view.jpg
+thumbnail: /pictures/featured-images-for-the-detail-view.jpg
 ---
 **Hi there and welcome! 
 Random hyperlink [Google](https://google.com/).
