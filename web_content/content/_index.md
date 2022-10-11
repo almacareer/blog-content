@@ -1,6 +1,6 @@
 ---
 author: Michal Šrámek (DeX)
-title: Enginnering Blog - Career Central
+title: Copyright © 2022 - Developer Experience · All rights reserved
 date: 2022-09-16
 ---
 
