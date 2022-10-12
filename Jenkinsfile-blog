@@ -31,7 +31,7 @@ pipeline {
                     git url: 'git@github.com:lmc-eu/engineering-blog.git', branch: "$env.BRANCH_NAME", credentialsId: '12488fbd-4843-4d1a-897d-eeff450020f9'
                     
                     
-                    version = readFile("VERSION")
+                    version = "0.2.${env.BUILD_ID}"
                     gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
                     def shortCommit = gitCommit.take(11)
                 }
@@ -74,14 +74,23 @@ pipeline {
         stage('Done') {
             steps {
                 script {
-                    // cleanup workspace
-                    step([$class: 'WsCleanup'])
-            
+
                     // be sure we have images
                     sh "docker images $registry/$image_name"
                     sh "printf The current docker images are:'\n'dcreg.service.consul/dev/${image_name}:$version'\n'dcreg.service.consul/prod/${image_name}:$version"
                 }
             }
-        }      
-    }
+        }
+
+        stage('Trigger Helm Chart Job') {
+            steps {
+                script {
+                    def job = build job: 'k8s-engineering-blog', parameters: [[$class: "StringParameterValue", name: "IMAGE_VERSION", value: "$version"]]
+            
+                    // cleanup workspace
+                    step([$class: 'WsCleanup'])
+                }
+            }     
+        }  
+    }    
 }
