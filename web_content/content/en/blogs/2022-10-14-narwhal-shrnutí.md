@@ -211,15 +211,12 @@ dcnarwhal-81.prod.internal.lmc           - pilot
 ```
 
 * **prod**
-
   * přístup do všech prostředí
   * nad ostrou DB `dbnarwhal.prod.internal.lmc`
 * **pilot**
-
   * nesmí instalovat do produkce
   * nad stejnou DB jako prod
 * ~~**dev, sandbox**~~ `→ smazáno 14.05.2021`
-
   * ~~nesmí instalovat do produkce~~
   * ~~vlastní DB "na hraní" `dbnarwhal.dev.internal.lmc`~~
 
