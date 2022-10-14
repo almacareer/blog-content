@@ -7,10 +7,8 @@ tags:
   - python
   - ansible
 date: 2022-10-14T12:48:51.567Z
-thumbnail: /web_content/static/pictures/narwhal-docs.png
+thumbnail: /web_content/static/pictures/narwhal-docs.jpeg
 ---
-# Intro
-
 Narwhal se skládá ze tří nezávislých částí (a několika pomocných robotů), které se deployují do vlastních kontejnerů a komunikují výhradně přes REST API. Roboti běží na stroji **`dcnarwhalservices-1.dev.internal.lmc`.**
 
 * <span style="color:red">**Serval**</span>
@@ -211,12 +209,15 @@ dcnarwhal-81.prod.internal.lmc           - pilot
 ```
 
 * **prod**
+
   * přístup do všech prostředí
   * nad ostrou DB `dbnarwhal.prod.internal.lmc`
 * **pilot**
+
   * nesmí instalovat do produkce
   * nad stejnou DB jako prod
 * ~~**dev, sandbox**~~ `→ smazáno 14.05.2021`
+
   * ~~nesmí instalovat do produkce~~
   * ~~vlastní DB "na hraní" `dbnarwhal.dev.internal.lmc`~~
 
