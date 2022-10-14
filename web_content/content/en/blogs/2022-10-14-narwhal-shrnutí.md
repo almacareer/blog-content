@@ -7,7 +7,7 @@ tags:
   - python
   - ansible
 date: 2022-10-14T12:48:51.567Z
-thumbnail: /pictures/narwhal-docs.jpg
+thumbnail: /pictures/narwhal-docs.jpeg
 ---
 Narwhal se skládá ze tří nezávislých částí (a několika pomocných robotů), které se deployují do vlastních kontejnerů a komunikují výhradně přes REST API. Roboti běží na stroji **`dcnarwhalservices-1.dev.internal.lmc`.**
 
@@ -44,9 +44,8 @@ Narwhal se skládá ze tří nezávislých částí (a několika pomocných robo
   * renderovací nástroj na templaty pro artefakty typu `service`, `kv_store` a `nomad`
   * [Renderovací nástroj Bender](https://confluence.lmc.cz/pages/viewpage.action?pageId=66224526)
 
-* <span style="color:orange">**Kafka-slack**
-</span>
-  * bezejmenný robot, který čte topic narwhal z Kafky, zpracovává zprávy a posílá je do Slacku, jednak do #narwhal-events, jednak dle definice v kódu (dle předpisu <https://confluence.int.lmc.cz/pages/viewpage.action?pageId=66986723>)
+- **<span style="color:orange">Kafka-slack</span>**
+ - bezejmenný robot, který čte topic narwhal z Kafky, zpracovává zprávy a posílá je do Slacku, jednak do #narwhal-events, jednak dle definice v kódu (dle předpisu <https://confluence.int.lmc.cz/pages/viewpage.action?pageId=66986723>)
 
 # Deployment
 
