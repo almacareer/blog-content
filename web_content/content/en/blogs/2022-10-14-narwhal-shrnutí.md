@@ -13,8 +13,6 @@ thumbnail: /web_content/static/pictures/narwhal-docs.png
 
 Narwhal se skládá ze tří nezávislých částí (a několika pomocných robotů), které se deployují do vlastních kontejnerů a komunikují výhradně přes REST API. Roboti běží na stroji **`dcnarwhalservices-1.dev.internal.lmc`.**
 
-<span style="color:blue">some *blue* text</span>.
-
 * <span style="color:red">**Serval**</span>
 
   * wrapper kolem Ansiblu - pouští playbook a log posílá do Narwhala
@@ -78,7 +76,7 @@ Narwhal se skládá ze tří nezávislých částí (a několika pomocných robo
 
 ## Hostitelské stroje
 
-**Potřebá struktura:**
+**Potřebná struktura:**
 
 ```shell
 /etc/narwhal/
@@ -105,6 +103,184 @@ Narwhal se skládá ze tří nezávislých částí (a několika pomocných robo
 
 <span style="color:orange">**/etc/narwhal/conf/db.cfg**</span> = connectionstring do DB: `DB__connection_string=postgresql+psycopg2://nwuser:password@dbnarwhal/narwhal`
 
-<span style="color:orange">**/etc/narwhal/ssh**</span> = ssh certifikáty pro roota do různých prostředí (výhledově by to nemusel být root, stačil by všude známý uživatel se sudo, ale muselo by se sáhnout do playbooků) - **produkční certifikát a klíč by měl být pouze na produkčním stroji!**
+<span style="color:orange">**/etc/narwhal/ssh**</span> = ssh certifikáty pro roota do různých prostředí (výhledově by to nemusel být root, stačil by všude známý uživatel se sudo, ale muselo by se sáhnout do playbooků) - <span style="color:red">**produkční certifikát a klíč by měl být pouze na produkčním stroji!**</span>
 
-<span style="color:orange">**/etc/narwhal/ssh/config**</span> = konfigurační soubor SSH pro kontejner Servala - musí obsahovat odkazy na certifikáty (ne klíče) z `/etc/narwhal/ssh`:
+<span style="color:orange">**/etc/narwhal/ssh/config**</span> = konfigurační soubor SSH pro kontejner Servala - musí obsahovat odkazy na certifikáty (ne klíče) z `/etc/narwhal/ssh`:\
+\
+**/etc/narwhal/ssh/config:**
+
+```yaml
+Host *
+  StrictHostKeyChecking no
+  IdentityFile /root/.ssh/devx_rsa
+  IdentityFile /root/.ssh/deploy_rsa
+```
+
+# Provoz
+
+Narwhal, Serval a Web by měly být nasazovány pomocí Ansible playbooku (sekce Deployment), roboti se spouští přímo na místě. V případě problémů, způsobených předchozím pádem některé potřebné služby (Consul) nebo celé sítě, obvykle stačí kontejnery restartovat pomocí `docker restart` na příslušném stroji.
+
+Běžné problémy při provozu: [Troubleshooting Narwhal](https://confluence.lmc.cz/display/TECH/Troubleshooting+Narwhal)
+
+## Startování robotů
+
+### **M﻿arvin:**
+
+```shell
+docker run -d --restart=always \
+    -v /etc/narwhal/certs:/etc/narwhal/certs:ro \
+    -e NARWHAL_API=https://narwhal.prod.internal.lmc:5000 \
+    -e CERT_PATH=/etc/narwhal/certs \
+    -e LDAP_USER=marvin \
+    -e LDAP_PASSWD=<password> \
+    -e USE_GRAYLOG=True \
+    -e GRAYLOG_SERVER=gray.prod.internal.lmc \
+    -e LDAP_SERVER=ldaps://ad.service.consul \
+    -e USE_PROMETHEUS=True \
+    -e PROMETHEUS_PUSHGATEWAY=pushgateway.prod.lmc \
+    --name narwhal-marvin \
+    --hostname marvin \
+    dcreg.service.consul/prod/narwhal-marvin:<version>
+```
+
+### **Bender:**
+
+```shell
+docker run -d --restart=always \
+    -v /etc/narwhal/certs:/etc/narwhal/certs:ro \
+    -e CONFIGSTORE_API=http://config-store.prod.services.lmc/v1 \
+    -e NARWHAL_API=https://narwhal.prod.internal.lmc:5000 \
+    -e CERT_PATH=/etc/narwhal/certs \
+    --name narwhal-bender \
+    --hostname bender \
+    -p 443:443 \
+    dcreg.service.consul/prod/narwhal-bender:<version>
+```
+
+### **Wall-e:**
+
+```shell
+docker run -d --restart=always \
+    -v /etc/narwhal/certs:/etc/narwhal/certs:ro \
+    -e NARWHAL_API=https://narwhal.prod.internal.lmc:5000 \
+    -e CERT_PATH=/etc/narwhal/certs \
+    -e CONSULS=http://consul-1.infra.cprod/v1,http://consul-1.infra.pprod/v1,http://consul-1.infra.cdev/v1 \
+    -e USE_PROMETHEUS=True \
+    -e PROMETHEUS_PUSHGATEWAY=pushgateway.prod.lmc \
+    -e USE_GRAYLOG=True \
+    -e GRAYLOG_SERVER=gray.prod.internal.lmc \
+    -e SLACK_WEBHOOK=https://slackhook.external-services/services/T02VD54KK/BEVE2QNMS/Iwigw8t1pjHLJ9MtedHLTRkV \
+    -e INTERVAL=1800 \
+    -e DOCKER_MODE=false \
+    --name narwhal-wall-e \
+    dcreg.infra.cprod/prod/narwhal-wall-e:<version>
+```
+
+### **K﻿afka-slack:**
+
+```shell
+docker run -d --restart=always \
+    -e WEBHOOK=https://hooks.slack.com/services/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 \
+    -e KAFKA_SERVER=kfall-61.prod.services.lmc:9092,kfall-51.prod.services.lmc:9092,kfall-82.prod.services.lmc:9092 \
+    --name narwhal-slack \
+    --hostname slack \
+    dcreg.service.consul/prod/narwhal-slack:<version>
+```
+
+### **Narwhal-Jenkins:**
+
+```shell
+VER=latest
+docker run -d --restart=always \
+     -p 8080:8080 \
+     -p 50000:50000 \
+     -v /var/lib/docker/volumes/jenkins-narwhal-home/_data:/var/jenkins_home:rw \
+     -v /var/run/docker.sock:/var/run/docker.sock:ro \
+     --name narwhal-jenkins \
+     dcreg.service.consul/prod/deployment-narwhal-jenkins:${VER}
+```
+
+## Instance Narwhala
+
+### **N﻿arwhalí stroje:**
+
+```shell
+dcnarwhalservices-1.dev.internal.lmc    - roboti, jenkins # 2.12. 2021 zmigrovano na produkcni server k narwhalovi kvuli izolaci prod prostredi
+dcnarwhal-61.prod.internal.lmc           - produkce
+dcnarwhal-81.prod.internal.lmc           - pilot
+```
+
+* **prod**
+
+  * přístup do všech prostředí
+  * nad ostrou DB `dbnarwhal.prod.internal.lmc`
+* **pilot**
+
+  * nesmí instalovat do produkce
+  * nad stejnou DB jako prod
+* ~~**dev, sandbox**~~ `→ smazáno 14.05.2021`
+
+  * ~~nesmí instalovat do produkce~~
+  * ~~vlastní DB "na hraní" `dbnarwhal.dev.internal.lmc`~~
+
+## Konfigurace Marvina a Kafka-slack robota
+
+Mapování AD skupin (AD skupina musí být memberOf narwhal-users!) na narwhalí skupiny je zde: <https://bitbucket.lmc.cz/projects/NRW/repos/nrw-marvin/browse/sync/mapping.py> - při změně je potřeba upravit, commitnout, zbuildit novou verzi a nasadit.
+
+Nastavení přeposílání je pro Kafka-slack uložené zde: <https://bitbucket.lmc.cz/projects/TECH/repos/narwhal/browse/kafka_slack/rules.py>. Je to python dict a je potřeba dodržovat typy, takže když u "slack_channels" je set ({val1, val2, ...}), tak tam musí být i pro jednu hodnotu.
+
+## Security
+
+CA má ve správě security. <span style="color:darkred">**V certifikátu musí být celý chain vč. rootové CA, jinak to nebude fungovat!!!**</span>
+
+## User management
+
+### Uživatelé
+
+#### Běžný vývojář
+
+Běžné uživatele do Narwhala zaregistruje robot Marvin podle AD. Podmínkou je, aby byl dotyčný v některé ze skupin, které Marvin zná; jsou to `narwhal-users` a v ní začleněné skupiny `SWD-*`, `SYS` a některé další. <span style="color:red">**Běžný vývojář by měl být v nějaké skupině `SWD-*`, která je členem `narwhal-users`**</span>**.** Pokud tam není, je chyba na straně AD (např. přejmenovaná skupina, nově založená skupina, něčí kreativní záměr atd.) a Marvin ho do Narwhala nezaregistruje (a pokud už tam je, zablokuje ho).
+
+Nový uživatel dostane defaultní práva podle návodu [Narwhal - user capabilities](https://confluence.lmc.cz/display/TECH/Narwhal+-+user+capabilities) a příslušnost ke skupinám podle mapovací tabulky <https://bitbucket.lmc.cz/projects/NRW/repos/nrw-marvin/browse/sync/mapping.py>. V případě změn v teamech by bylo na místě mapovací tabulku upravit a Marvina upgradovat. <span style="color:red">**Marvin dál na práva ani na členství ve skupinách nesahá, pouze hlásí do Graylogu, kdo má práva, na která podle pravidel nemá nárok, případně komu nějaká práva chybí**</span>(typicky RUN_PROD po zkušebce),<span style="color:red">**jakékoliv další zásahy musí ručně provádět někdo s právem USER_MANAGEMENT**</span> (takových lidí by nemělo být moc, nejvýš 5). ~~Výpis Marvinových kontrol: <https://gray-1.prod.internal.lmc/streams/5a93c05f6ae8cb5ce300904b/search>~~
+
+Zaznamy do graylogu jsou aktualne nefunkcni a pracujeme na naprave. Vypis jednotlivych prav je mozne ziskat z logu kontejneru marvina. 
+
+#### Nevývojář
+
+Uživatelé, kteří nejsou v žádném `SWD-*` teamu a mají mít přístup do Narwhala (manageři, architecture, security, ...) musí být přímo členy `narwhal-users`. Jejich členství ve skupinách a případná speciální oprávnění musí zařídit user manager. <span style="color:red">**Přímé členství v `narwhal-users` NENÍ legitimní řešení případného chaosu v AD kolem `SWD-*` teamů!!!**</span>
+
+#### Stroj
+
+Strojový uživatel se musí vytvořit ručně. Respektujte přitom jmennou konvenci `<jméno služby>-<tým>[-<pořadové číslo>]`, např. `jenkins-jobs-1` nebo `jenkins-prace`.
+
+Příklad:
+
+```shell
+curl -ik https://dcnarwhal-2.prod.internal.lmc:5000/user/users --key hyklm.key --cert hyklm.crt -X POST -d '{"name": "jenkins-ict", "capabilities":["WRITE", "RUN"], "type": "machine", "groups": ["ict"]}'
+```
+
+### Skupiny
+
+#### Vytváření, editace
+
+Nově je možné skupiny vytvářet a editovat (pouze disable) i v GUI.
+
+#### Členství ve skupinách
+
+Od vytvoření uživtele se jeho členství v narwhalích skupinách nijak nesynchronizuje s AD (což je schválně). Proto je možné snadno udělat skupinu, která vlastní artefakty sdílené dvěma teamy (`shared-jobs_prace`), případně někomu dočasně přidat členství v teamu, kde vypomáhá.
+
+## Kód
+
+### Narwhal
+
+Hlavní logika je v `database.py` (drží session nad DB a konstruuje dotazy) a `narwhal.py` (hlídá zámky, kontroluje práva, wrapuje exceptiony).
+
+Obě třídy mají přetíženou metodu <span style="color:purple">\_\_getattribute\_\_</span>, kvůli generickému řešení CRUD operací nad různými entitami (pokud generické řešení nestačí, je potřeba dopsat konkrétní metodu, která pak dostane přednost).
+
+### Serval
+
+Nedoporučuji sahat jinam, než do `inventory.py`, případně `task.py` - tam se generuje inventory yaml. Ostatní části, zejména ty, kde se spouští Ansible, jsou prastaré a temné, jako by je napsal šílený Arab Abdul Alhazred (klid, napsal je Kamil).
+
+### Web
+
+Kromě generování keypairu neobsahuje žádnou významnou logiku. Možná by stálo za to provést něco s mým hnusným JavaScriptem.
