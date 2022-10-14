@@ -7,7 +7,7 @@ tags:
   - python
   - ansible
 date: 2022-10-14T12:48:51.567Z
-thumbnail: /web_content/static/pictures/narwhal-docs.jpeg
+thumbnail: /web_content/static/pictures/narwhal-docs.jpg
 ---
 Narwhal se skládá ze tří nezávislých částí (a několika pomocných robotů), které se deployují do vlastních kontejnerů a komunikují výhradně přes REST API. Roboti běží na stroji **`dcnarwhalservices-1.dev.internal.lmc`.**
 
