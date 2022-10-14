@@ -54,8 +54,7 @@ Narwhal se skládá ze tří nezávislých částí (a několika pomocných robo
 
 ## Build
 
-* <span style="color:red">
-verze image se bere z příslušného souboru VERSION v projektu - před každým buildem je nutné ji ručně změnit
+* <span style="color:red">verze image se bere z příslušného souboru VERSION v projektu - před každým buildem je nutné ji ručně změnit
 </span>
 * provádí se na dockerovaném Jenkinsu: 
 
