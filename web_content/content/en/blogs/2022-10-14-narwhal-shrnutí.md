@@ -259,15 +259,19 @@ CA má ve správě security. 
 
 #### Běžný vývojář
 
-Běžné uživatele do Narwhala zaregistruje robot Marvin podle AD. Podmínkou je, aby byl dotyčný v některé ze skupin, které Marvin zná; jsou to `narwhal-users` a v ní začleněné skupiny `SWD-*`, `SYS` a některé další. <span style="color:red">**Běžný vývojář by měl být v nějaké skupině `SWD-*`, která je členem `narwhal-users.`**
+Běžné uživatele do Narwhala zaregistruje robot Marvin podle AD. Podmínkou je, aby byl dotyčný v některé ze skupin, které Marvin zná; jsou to `narwhal-users` a v ní začleněné skupiny `SWD-*`, `SYS` a některé další. 
+<span style="color:red">
+**Běžný vývojář by měl být v nějaké skupině `SWD-*`, která je členem `narwhal-users.`**
 </span>
 Pokud tam není, je chyba na straně AD (např. přejmenovaná skupina, nově založená skupina, něčí kreativní záměr atd.) a Marvin ho do Narwhala nezaregistruje (a pokud už tam je, zablokuje ho).
 
-Nový uživatel dostane defaultní práva podle návodu [Narwhal - user capabilities](https://confluence.lmc.cz/display/TECH/Narwhal+-+user+capabilities) a příslušnost ke skupinám podle mapovací tabulky <https://bitbucket.lmc.cz/projects/NRW/repos/nrw-marvin/browse/sync/mapping.py>. V případě změn v teamech by bylo na místě mapovací tabulku upravit a Marvina upgradovat. 
-<span style="color:red">**Marvin dál na práva ani na členství ve skupinách nesahá, pouze hlásí do Graylogu, kdo má práva, na která podle pravidel nemá nárok, případně komu nějaká práva chybí**
+Nový uživatel dostane defaultní práva podle návodu [Narwhal - user capabilities](https://confluence.lmc.cz/display/TECH/Narwhal+-+user+capabilities) a příslušnost ke skupinám podle mapovací tabulky <https://bitbucket.lmc.cz/projects/NRW/repos/nrw-marvin/browse/sync/mapping.py>. V případě změn v teamech by bylo na místě mapovací tabulku upravit a Marvina upgradovat.
+<span style="color:red">
+**Marvin dál na práva ani na členství ve skupinách nesahá, pouze hlásí do Graylogu, kdo má práva, na která podle pravidel nemá nárok, případně komu nějaká práva chybí**
 </span>
 (typicky RUN_PROD po zkušebce),
-<span style="color:red">**jakékoliv další zásahy musí ručně provádět někdo s právem USER_MANAGEMENT**
+<span style="color:red">
+**jakékoliv další zásahy musí ručně provádět někdo s právem USER_MANAGEMENT**
 </span>
 (takových lidí by nemělo být moc, nejvýš 5). ~~Výpis Marvinových kontrol: <https://gray-1.prod.internal.lmc/streams/5a93c05f6ae8cb5ce300904b/search>~~
 
@@ -276,7 +280,8 @@ Zaznamy do graylogu jsou aktualne nefunkcni a pracujeme na naprave. Vypis jednot
 #### Nevývojář
 
 Uživatelé, kteří nejsou v žádném `SWD-*` teamu a mají mít přístup do Narwhala (manageři, architecture, security, ...) musí být přímo členy `narwhal-users`. Jejich členství ve skupinách a případná speciální oprávnění musí zařídit user manager. 
-<span style="color:red">**Přímé členství v `narwhal-users` NENÍ legitimní řešení případného chaosu v AD kolem `SWD-*` teamů!!!**
+<span style="color:red">
+**Přímé členství v `narwhal-users` NENÍ legitimní řešení případného chaosu v AD kolem `SWD-*` teamů!!!**
 </span>
 
 #### Stroj
