@@ -45,3 +45,54 @@ Narwhal se skládá ze tří nezávislých částí (a několika pomocných robo
 * <span style="color:orange">﻿**Kafka-slack**</span>
 
   * bezejmenný robot, který čte topic narwhal z Kafky, zpracovává zprávy a posílá je do Slacku, jednak do #narwhal-events, jednak dle definice v kódu (dle předpisu <https://confluence.int.lmc.cz/pages/viewpage.action?pageId=66986723>)
+
+# Deployment
+
+(jen pro hlavní části Narwhala, deployment robotů je popsaný v sekci Provoz)
+
+## Build
+
+* <span style="color:red">verze image se bere z příslušného souboru VERSION v projektu - před každým buildem je nutné ji ručně změnit!</span>
+* provádí se na dockerovaném Jenkinsu: 
+
+  \- SSH: dcnarwhal-61.prod.internal.lmc\
+
+  * JENKINS: <http://narwhal.prod.internal.lmc:8080/>\
+  * WEB UI: [http://narwhal.prod.internal.lmc/](http://narwhal.prod.internal.lmc:8080/)
+  * DCREG: <https://dcreg.service.consul/repository/prod/deployment-narwhal-jenkins>
+* Jenkins je ad hoc upravený base image Jenkinsu z docker hubu
+* Build nove image je provaden z git repository, kde jsou uvedene i instrukce v README.md: <ssh://git@bitbucket.lmc.cz:7999/nrw/nrw-jenkins.git>
+
+## Deployment
+
+* provádí se pomocí Ansible, nastavení se verzuje v Gitu
+* je potřeba, aby Ansible používal na SSH přístup někoho, kdo má na Narwhalích strojích `sudo` (nastavit v souboru **`narwhal-hosts`,** stejně jako případný **přesun** na jiné stroje (pak je potřeba hosts změnit ještě v **`conf/narwhal.yml`))**
+* repozitář:[ https://bitbucket.lmc.cz/projects/TECH/repos/narwhal-deployment/browse](https://bitbucket.lmc.cz/projects/TECH/repos/narwhal-deployment/browse)
+* příkaz: `ansible-playbook narwhal-<type>.yml -v`, **`type`** může být `dev, pilot, prod, sandbox`
+
+## Konfigurace
+
+* základní konfigurace, která se obvykle nemění, je staticky v souboru **`_narwhal-instance.yml`** - rozdělené po kontejnerech bez ohledu na cílové prostředí; také se sem dočítá konfigurace závislá na prostředí
+* konfigurace závislá na prostředí (zejm. verze image) je v souboru **`config/narwhal.yml`**
+* defaultní hodnoty nastavení se dají najít zde: <https://bitbucket.lmc.cz/projects/TECH/repos/narwhal/browse/lmc_config/config_backend.py>
+
+## Hostitelské stroje
+
+```shell
+/etc/narwhal/
+├── certs
+│   ├── narwhal.crt
+│   ├── narwhal.key
+│   ├── rootCA.pem
+│   ├── serval.crt
+│   ├── serval.key
+│   ├── server.crt
+│   ├── server.key
+│   ├── web.crt
+│   └── web.key
+├── conf
+│   ├── ad.cfg
+│   └── db.cfg
+└── ssh
+    └── config
+```
