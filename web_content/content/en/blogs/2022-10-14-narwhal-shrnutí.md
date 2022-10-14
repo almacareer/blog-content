@@ -78,6 +78,8 @@ Narwhal se skládá ze tří nezávislých částí (a několika pomocných robo
 
 ## Hostitelské stroje
 
+**Potřebá struktura:**
+
 ```shell
 /etc/narwhal/
 ├── certs
@@ -96,3 +98,13 @@ Narwhal se skládá ze tří nezávislých částí (a několika pomocných robo
 └── ssh
     └── config
 ```
+
+<span style="color:red">**Vzhledem k obsahu by do celého podstromu měl být velmi omezený přístup (SSH to dokonce vyžaduje)!**</span>
+
+<span style="color:orange">**/etc/narwhal/certs**</span> = certifikáty jednotlivých kontejnerů + certifikát CA (musí se jmenovat takto) + serverový ceritifikát (+klíč) pro HTTPS (společný pro všechny kontejnery, protože je vystavený pro celý hostname)
+
+<span style="color:orange">**/etc/narwhal/conf/db.cfg**</span> = connectionstring do DB: `DB__connection_string=postgresql+psycopg2://nwuser:password@dbnarwhal/narwhal`
+
+<span style="color:orange">**/etc/narwhal/ssh**</span> = ssh certifikáty pro roota do různých prostředí (výhledově by to nemusel být root, stačil by všude známý uživatel se sudo, ale muselo by se sáhnout do playbooků) - **produkční certifikát a klíč by měl být pouze na produkčním stroji!**
+
+<span style="color:orange">**/etc/narwhal/ssh/config**</span> = konfigurační soubor SSH pro kontejner Servala - musí obsahovat odkazy na certifikáty (ne klíče) z `/etc/narwhal/ssh`:
