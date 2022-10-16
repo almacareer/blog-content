@@ -1,12 +1,13 @@
 ---
+math: true
 author: Michal Šrámek
+lastmod: 2022-09-19
 title: Math Typesetting-2
 description: A brief guide to setup KaTeX
-tags: ["katex"]
+tags:
+  - katex
 date: 2022-09-14
-lastmod: 2022-09-19
-math: true
-thumbnail: https://picsum.photos/id/1015/400/250
+thumbnail: /pictures/house.jpg
 ---
 
 Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.
