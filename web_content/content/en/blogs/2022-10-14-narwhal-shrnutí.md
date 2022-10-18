@@ -28,7 +28,7 @@ Narwhal se skládá ze tří nezávislých částí (a několika pomocných robo
   * [Narwhal GUI - Release workflow](https://confluence.lmc.cz/display/TECH/Narwhal+GUI+-+Release+workflow)
 * **<span style="color:orange">Marvin</span>**
 
-  * robot pro synchronizaci uživatelů: [Synchronizační démon 'Marvin'](https://confluence.lmc.cz/pages/viewpage.action?pageId=49886456)
+  * robot pro synchronizaci uživatelů: [Synchronizační démon Marvin](https://confluence.lmc.cz/pages/viewpage.action?pageId=49886456)
   * další info v sekci User management
 * **<span style="color:orange">Wall-e</span>**
 
