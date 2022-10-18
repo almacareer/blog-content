@@ -31,3 +31,50 @@ thumbnail: /pictures/marvin-adsyncer.jpg
 * uživatel s ručně přidanými **právy** / **členstvím** ve skupině o tato práva / členství nepřijde
 * při přestupu uživatele mezi týmy bude potřeba ručně zrušit členství v původní skupině
 * při odchodu vývojáře se účet automaticky zamkne
+
+# M﻿apování
+
+~~Prosím team leadery nebo jiné odpovědné lidi, aby k vyjmenovaným AD skupinám (ideálně každý ke své) dopsal z následujícího seznamu narwhalích skupin ty, ke kterým mají mít členové AD skupiny automatický přístup.~~ Pokud žádnou narwhalí skupinu nemáte a artefakty máte ve skupině TECH, napište to do nějaké poznámky, dostanete novou skupinu. Na obecně sdílené artefakty (aspoň třemi teamy) máme speciální skupinu `_shared_`.
+
+## Skupiny v AD:
+
+* SWD-TEAMIO-RED: recruit
+* SWD-TEAMIO-BLUE: recruit
+* SWD-TEAMIO-PL: recruit
+* SWD-PRACE-ZA-ROHEM: za_rohem
+* SWD-PRACE: prace, shared-jobs_prace
+* SWD-JOBS: jobs, shared-jobs_prace
+* ~~SWD-JOBOTE: jobote~~
+* SWD-COMPRES: compres
+* SWD-EDU: edu
+* SWD-ECOM: recruit
+* SWD-EASYTASK: easytask
+* SWD-CUSTOMER-DESIGN: xslt
+* SWD-BI: dwh
+* SWD-ATMOSKOP: atmoskop
+* SWD-CAPYBARA: capybara
+* SWD-ARNOLD: arnold
+
+## Skupiny v Narwhalu:
+
+* arch
+* atmoskop
+* arnold
+* business_platform (zrusi se, obsah se spoji s recruit)
+* capybara
+* dwh
+* easytask
+* edu
+* jobote
+* jobs
+* ontology
+* prace
+* recruit
+* ~~tech~~
+* xslt
+* za_rohem
+
+## Sdílecí skupiny:
+
+* shared-jobs_prace
+* \_shared\_
