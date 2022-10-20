@@ -3,7 +3,7 @@ backend:
   repo: lmc-eu/engineering-blog
   branch: master
   auth_type: implicit
-  base_url: https://github-oauth.service.dev2-ict.consul
+  base_url: https://github-oauth.service.prod-internal.consul
     
 publish_mode: editorial_workflow
 media_folder: "/pictures" # Media files will be stored in the repo under images/uploads

@@ -1,4 +1,4 @@
-baseURL: "https://engineering-blog.service.dev2-ict.consul"
+baseURL: "https://engineering-blog.service.prod-internal.consul"
 metaDataFormat: "yaml"
 languageCode: "en-us"
 title: "Engineering Blog"
