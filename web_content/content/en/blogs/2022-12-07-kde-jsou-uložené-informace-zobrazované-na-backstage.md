@@ -5,7 +5,7 @@ description: Přehled uložení uživatelských informací viditelných na Backs
 tags:
   - Backstage
 date: 2022-11-30T13:09:08.339Z
-thumbnail: /pictures/backstage_logo_teal.svg
+thumbnail: /pictures/spotify-labs-header.png
 ---
 Hlavním zdrojem informací pro Backstage je Git (BitBucket, GitHub, ... ). Informace jsou v Gitu uloženy a spravovány stejně jako zdrojové kódy aplikací. Jedná se např. o popis IT služeb, jejich dokumentaci, specifikaci API, používané zdroje (databáze, fronty, ...) nebo architektonická rozhodnutí.\
 Každá položka je popsána yaml souborem se stejnou skrukturou a logikou používanou v Kubernetu. Příklad definice služby (kind: Component, spec.type: service):
