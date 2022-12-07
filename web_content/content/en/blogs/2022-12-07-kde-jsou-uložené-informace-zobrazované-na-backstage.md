@@ -3,7 +3,7 @@ author: Tomáš Peroutka
 title: Kde jsou uložené informace zobrazované na Backstage?
 description: Přehled uložení uživatelských informací viditelných na Backstage portálu.
 tags:
-  - Backstage
+  - backstage
 date: 2022-11-30T13:09:08.339Z
 thumbnail: /pictures/backstage-header.png
 ---
