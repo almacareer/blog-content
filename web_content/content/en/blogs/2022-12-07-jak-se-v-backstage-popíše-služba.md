@@ -31,4 +31,4 @@ Informace o závislostech služby jsou zvýrazněny červeně.
 
 Všimněte si, že odkazované závislosti jsou specifikovány pouze obecně, bez informace o tom, na jakém prostředí se daný resource nebo jiná služba nachází. To výrazně usnadňuje tvorbu a udržování popisného souboru a zajišťuje jeho stabilitu. Informace o konkrétních instancích v prostředích jsou v Backstage k dispozici pomocí pluginů, které se integrují do infrastruktury a poskytují detailní informace potřebné pro úplný přehled o službě.
 
-Příště si ukážeme, jak pro službu definovat to, jaké dodatečné informace z jiných systémů pro službu umí Backstage poskytnout.
+Příště si ukážeme, jak pro službu nadefinovat, které pluginy a jaké informace externích systémů chceme mít k dispozici.
