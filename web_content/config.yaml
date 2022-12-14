@@ -44,13 +44,14 @@ params: {
   hideOtherLanguages: true,
   homepage: {
     social: {
-      title: "Connect,",
-      description: "be Awesome!",
+      title: "Follow us,",
+      description: "we provide awesome tricks and ideas!",
       instagram: "https://www.instagram.com/lmc_feeling/",
       facebook: "https://www.facebook.com/LMC.eu/",
       linkedin: "https://www.linkedin.com/company/lmc/",
       youtube: "https://www.youtube.com/user/LMCnews",
-      twitter: "http://bit.ly/twLMC"
+      twitter: "http://bit.ly/twLMC",
+      github: "https://github.com/almacareer"
     }
   }
 }
