@@ -26,3 +26,17 @@ Na stránce https://backstage.io/plugins je seznam všech oficiálně dostupnýc
 Komerčně dostupné pluginy jsou v ekosystému okolo Backstage novinkou. Pionýrem je zde Spotify, tvůrce Backstage. Sadu licencovnaných pluginů byla představena teprve 15.12.2022. Zatím se nabídka skládá z pěti pluginů nabízených formou předplatného. V budoucnu budou tímto předplatným pokryty i nové pluginy. Aktuálně není známo, jaká bude konečná cena předplatného. Popis pluginů najdete https://backstage.spotify.com/plugins/.
 
 V Backstage chceme mít kompletní informace ze všech systémů a aplikací relevatních pro naše služby. Ne ve všech případech je k dispozici plugin pro okamžité použití. Pro tyto případy je možné Backstage rozšířit pluginy vyvinutými na míru. Na tyto situace je Backstage architektonicky připravena tvorba vlatních pluginů je přímo doporučována a proto je vývoj pluginy relativně jednoduchá záležitost. Nejlepším příkladem takového pluginu v našem prostředí je pohled do Narwhala:
+
+![Narwhal Plugin](/pictures/backstage-narwhal-plugin.jpg)
+
+## Jak pluginy použít?
+
+Využití pluginů se skládá ze dvou kroků.
+
+1. Obstarání pluginu (viz. výše - download, zakoupení, vlastní vývoj) - může provést jakýkoli tým
+2. Instalace pluginu do Backstage - provádí DeX tým
+3. Konfigurace pluginu u konkrétní entity v Backstage (služba, resource, déména, ...) - provádí vlastník entity 
+
+Detailněji se budeme věnovat poslednímu bodu - co a kde je nutno nastavit, aby služba zobrazovala plugin Narwhala s relevatními informacemi a deployment artefaktu.
+
+B﻿ackstage
