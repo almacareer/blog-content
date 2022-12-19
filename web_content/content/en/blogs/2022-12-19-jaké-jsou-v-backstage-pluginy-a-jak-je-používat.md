@@ -31,7 +31,7 @@ V Backstage chceme mít kompletní informace ze všech systémů a aplikací rel
 
 ## Jak pluginy použít?
 
-Využití pluginů se skládá ze dvou kroků.
+Využití pluginů se skládá ze tří kroků:
 
 1. Obstarání pluginu (viz. výše - download, zakoupení, vlastní vývoj) - může provést jakýkoli tým
 2. Instalace pluginu do Backstage - provádí DeX tým
@@ -60,7 +60,7 @@ P﻿ro konfiguraci vyžadovaných pluginů je klíčová sekce \`annotations\`. 
 
 S﻿tejným způsobem mohou být zachyceny informace konfigurující jiné pluginy, např.:
 
-```
+```yaml
   annotations:
     backstage.io/kubernetes-id: consents-personAggregateEventsCollector
     kafka.apache.org/consumer-groups: kfall-dev1-services/consents-personAggregateEventsCollector-common-stable
@@ -73,10 +73,10 @@ S﻿tejným způsobem mohou být zachyceny informace konfigurující jiné plugi
 A﻿notace zobrazí pluginy s informacemi o: 
 
 * O﻿bjektech v Kubernetu
-* K﻿onsumovaných topicích  Kafky
+* K﻿onzumovaných topicích  Kafky
 * T﻿echnickou dokumentaci
 * N﻿álezy ze SonarQube
-* R﻿elavantní architektonická rozhodnutí (ADR)
+* R﻿elevantní architektonická rozhodnutí (ADR)
 * Č﻿asovou osu změn služby
 
 V﻿ýběr pluginů a předávaná konfigurace je plně v zodpovědnosti vlastníka služby (či jiné entity).
