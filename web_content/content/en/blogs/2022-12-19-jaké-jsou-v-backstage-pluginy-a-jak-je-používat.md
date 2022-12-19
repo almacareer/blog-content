@@ -25,7 +25,7 @@ Na stránce https://backstage.io/plugins je seznam všech oficiálně dostupnýc
 
 Komerčně dostupné pluginy jsou v ekosystému okolo Backstage novinkou. Pionýrem je zde Spotify, tvůrce Backstage. Sadu licencovnaných pluginů byla představena teprve 15.12.2022. Zatím se nabídka skládá z pěti pluginů nabízených formou předplatného. V budoucnu budou tímto předplatným pokryty i nové pluginy. Aktuálně není známo, jaká bude konečná cena předplatného. Popis pluginů najdete https://backstage.spotify.com/plugins/.
 
-V Backstage chceme mít kompletní informace ze všech systémů a aplikací relevatních pro naše služby. Ne ve všech případech je k dispozici plugin pro okamžité použití. Pro tyto případy je možné Backstage rozšířit pluginy vyvinutými na míru. Na tyto situace je Backstage architektonicky připravena tvorba vlatních pluginů je přímo doporučována a proto je vývoj pluginy relativně jednoduchá záležitost. Nejlepším příkladem takového pluginu v našem prostředí je pohled do Narwhala:
+V Backstage chceme mít kompletní informace ze všech systémů a aplikací relevatních pro naše služby. Ne ve všech případech je k dispozici plugin pro okamžité použití. Pro tyto případy je možné Backstage rozšířit pluginy vyvinutými na míru. Na tyto situace je Backstage architektonicky připravena tvorba vlastních pluginů je přímo doporučována a proto je vývoj pluginy relativně jednoduchá záležitost. Nejlepším příkladem takového pluginu v našem prostředí je pohled do Narwhala:
 
 ![Narwhal Plugin](/pictures/backstage-narwhal-plugin.jpg)
 
@@ -35,11 +35,11 @@ Využití pluginů se skládá ze dvou kroků.
 
 1. Obstarání pluginu (viz. výše - download, zakoupení, vlastní vývoj) - může provést jakýkoli tým
 2. Instalace pluginu do Backstage - provádí DeX tým
-3. Konfigurace pluginu u konkrétní entity v Backstage (služba, resource, déména, ...) - provádí vlastník entity 
+3. Konfigurace pluginu u konkrétní entity v Backstage (služba, resource, doména, ...) - provádí vlastník entity 
 
 Detailněji se budeme věnovat poslednímu bodu - co a kde je nutno nastavit, aby služba zobrazovala plugin Narwhala s relevatními informacemi a deployment artefaktu.
 
-Z﻿de je specifikace služby \`consents-consentor\`, která u které chceme vidět infomace z Narwhala pomocí pluginu:
+Z﻿de je specifikace služby \`consents-consentor\`, která u které chceme vidět informace z Narwhala pomocí pluginu:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -59,3 +59,26 @@ spec:
 P﻿ro konfiguraci vyžadovaných pluginů je klíčová sekce \`annotations\`. Každý z klíčů v této části představuje informaci pro pluginy. Zde konkrétně je to klíč \`lmc/narwhal-artifact\`. Pokud je tento klíč ve specifikaci služby uveden, Backstage zobrazí záložku s pluginem Narwhala a předá mu hodnotu - v tomto případě \`consents-consentor-\`. Hodnota je použita pro filtrování artefaktů, které na pluginu budou zobrazeny (viz. screenshot v předchozí části).
 
 S﻿tejným způsobem mohou být zachyceny informace konfigurující jiné pluginy, např.:
+
+```
+  annotations:
+    backstage.io/kubernetes-id: consents-personAggregateEventsCollector
+    kafka.apache.org/consumer-groups: kfall-dev1-services/consents-personAggregateEventsCollector-common-stable
+    backstage.io/techdocs-ref: dir:.
+    sonarqube.org/project-key: consents-person-aggregate-events-collector
+    backstage.io/adr-location: docs/adrs
+    backstage.io/history-location: docs/history
+```
+
+A﻿notace zobrazí pluginy s informacemi o: 
+
+* O﻿bjektech v Kubernetu
+* K﻿onsumovaných topicích  Kafky
+* T﻿echnickou dokumentaci
+* N﻿álezy ze SonarQube
+* R﻿elavantní architektonická rozhodnutí (ADR)
+* Č﻿asovou osu změn služby
+
+V﻿ýběr pluginů a předávaná konfigurace je plně v zodpovědnosti vlastníka služby (či jiné entity).
+
+V﻿yužití anotací jako explicitního mechanismu pro konfiguraci pluginů umožňuje takové nastavení zobrazovaných informací, které vyhovuje konkrétním požadavkům vlastníků služeb. Není nutno globálně definovat, jaké pluginy budou zobrazeny, nebo definovat pravidla pro jejich konfiguraci např. ze jména služby. Vše je explicitní a verzované v Gitu.
