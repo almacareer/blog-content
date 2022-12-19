@@ -39,4 +39,23 @@ Využití pluginů se skládá ze dvou kroků.
 
 Detailněji se budeme věnovat poslednímu bodu - co a kde je nutno nastavit, aby služba zobrazovala plugin Narwhala s relevatními informacemi a deployment artefaktu.
 
-B﻿ackstage
+Z﻿de je specifikace služby \`consents-consentor\`, která u které chceme vidět infomace z Narwhala pomocí pluginu:
+
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: consents-consentor
+  description: Collects interactions from customer-facing services in other domains. The entry point into the Consents domain.
+  annotations:
+    lmc/narwhal-artifact: consents-consentor-
+spec:
+  type: service
+  lifecycle: deprecated
+  owner: architecture
+  system: consents-consentsManager
+```
+
+P﻿ro konfiguraci vyžadovaných pluginů je klíčová sekce \`annotations\`. Každý z klíčů v této části představuje informaci pro pluginy. Zde konkrétně je to klíč \`lmc/narwhal-artifact\`. Pokud je tento klíč ve specifikaci služby uveden, Backstage zobrazí záložku s pluginem Narwhala a předá mu hodnotu - v tomto případě \`consents-consentor-\`. Hodnota je použita pro filtrování artefaktů, které na pluginu budou zobrazeny (viz. screenshot v předchozí části).
+
+S﻿tejným způsobem mohou být zachyceny informace konfigurující jiné pluginy, např.:
