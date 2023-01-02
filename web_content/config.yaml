@@ -18,7 +18,7 @@ languages:
     params:
 #      introTitle: "Engineering Blog"
 #      introSubtitle: >-
-#        Docs, Tips & Tricks
+#      Docs, Tips & Tricks
       introPhoto: /intro.png
       logo: /logo.png
     menu:
@@ -30,45 +30,48 @@ languages:
           url: blogs/
           weignt: 1
 
-params: {
-  darkModeToggle: true,
-  enableSearch: true,
-  
+params:
+  darkModeToggle: true
+  enableSearch: true
   # Option to customize the search parameters of a page
   # Below are the supported options; Note that including entire content
   # may slowdown the loading of search results
   # Title of page is included by default
-  searchKeys: [
-    tags,
-    date,
-    categories,
-    summary,
-    content,
-    link,
-    author
-  ],
-  copyright: "Copyright © 2022 - Developer Experience · All rights reserved",
-  favicon: "/favicon.svg",
+  searchKeys:
+    - tags
+    - date
+    - categories
+    - summary
+    - content
+    - link
+    - author
+
+  copyright: "Copyright © 2022 - Developer Experience · All rights reserved"
+  favicon: "/favicon.svg"
   # Color for the intro details and social links block, not applicable for dark mode - Supported values: Any color from TailwindCSS default colors. Reference: https://tailwindcss.com/docs/customizing-colors
-  ascentColor: "bg-pink-50",
+  ascentColor: "bg-pink-50"
   # The page bundle that is shown on the front page
-  frontBundle: "blogs",
+  frontBundle: "blogs"
   # Hide the post metadata (posted date, reading time, word count), can be used at site level or page level
-  hideMeta: false,
-  hideOtherLanguages: true,
-  homepage: {
-    social: {
-      title: "Follow us,",
-      description: "we provide awesome tricks and ideas!",
-      instagram: "https://www.instagram.com/lmc_feeling/",
-      facebook: "https://www.facebook.com/LMC.eu/",
-      linkedin: "https://www.linkedin.com/company/lmc/",
-      youtube: "https://www.youtube.com/user/LMCnews",
-      twitter: "http://bit.ly/twLMC",
-      github: "https://github.com/almacareer"
-    }
-  }
-}
+  hideMeta: false
+  hideOtherLanguages: true
+  homepage:
+    social:
+      title: "Follow us,"
+      description: "we provide awesome tricks and ideas!"
+      icons:
+        - website: instagram
+          url: "https://www.instagram.com/lmc_feeling/"
+        - website: facebook
+          url: "https://www.facebook.com/LMC.eu/"
+        - website: linkedin
+          url: "https://www.linkedin.com/company/lmc/"
+        - website: youtube
+          url: "https://www.youtube.com/user/LMCnews"
+        - website: twitter
+          url: "http://bit.ly/twLMC"
+        - website: github
+          url: "https://github.com/almacareer"
 
 markup:
   highlight:
@@ -83,8 +86,7 @@ outputs:
     - RSS
     - JSON
 
-build: {
+build:
   writeStats: false
-}
 
 googleAnalytics: ""
