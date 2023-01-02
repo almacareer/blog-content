@@ -39,7 +39,7 @@ Využití pluginů se skládá ze tří kroků:
 
 Detailněji se budeme věnovat poslednímu bodu - co a kde je nutno nastavit, aby služba zobrazovala plugin Narwhala s relevatními informacemi a deployment artefaktu.
 
-Z﻿de je specifikace služby \`consents-consentor\`, která u které chceme vidět informace z Narwhala pomocí pluginu:
+Z﻿de je specifikace služby `consents-consentor`, u které chceme vidět informace z Narwhala pomocí pluginu:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -56,7 +56,7 @@ spec:
   system: consents-consentsManager
 ```
 
-P﻿ro konfiguraci vyžadovaných pluginů je klíčová sekce \`annotations\`. Každý z klíčů v této části představuje informaci pro pluginy. Zde konkrétně je to klíč \`lmc/narwhal-artifact\`. Pokud je tento klíč ve specifikaci služby uveden, Backstage zobrazí záložku s pluginem Narwhala a předá mu hodnotu - v tomto případě \`consents-consentor-\`. Hodnota je použita pro filtrování artefaktů, které na pluginu budou zobrazeny (viz. screenshot v předchozí části).
+P﻿ro konfiguraci vyžadovaných pluginů je klíčová sekce `annotations`. Každý z klíčů v této části představuje informaci pro pluginy. Zde konkrétně je to klíč `lmc/narwhal-artifact\`. Pokud je tento klíč ve specifikaci služby uveden, Backstage zobrazí záložku s pluginem Narwhala a předá mu hodnotu - v tomto případě `consents-consentor-`. Hodnota je použita pro filtrování artefaktů, které na pluginu budou zobrazeny (viz. screenshot v předchozí části).
 
 S﻿tejným způsobem mohou být zachyceny informace konfigurující jiné pluginy, např.:
 
@@ -73,7 +73,7 @@ S﻿tejným způsobem mohou být zachyceny informace konfigurující jiné plugi
 A﻿notace zobrazí pluginy s informacemi o: 
 
 * O﻿bjektech v Kubernetu
-* K﻿onzumovaných topicích  Kafky
+* K﻿onzumovaných topicích Kafky
 * T﻿echnickou dokumentaci
 * N﻿álezy ze SonarQube
 * R﻿elevantní architektonická rozhodnutí (ADR)
