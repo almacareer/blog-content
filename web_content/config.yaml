@@ -49,7 +49,7 @@ params:
   copyright: "Copyright © 2022 - Developer Experience · All rights reserved"
   favicon: "/favicon.svg"
   # Color for the intro details and social links block, not applicable for dark mode - Supported values: Any color from TailwindCSS default colors. Reference: https://tailwindcss.com/docs/customizing-colors
-  ascentColor: "bg-pink-50"
+  ascentColor: "bg-blue-100"
   # The page bundle that is shown on the front page
   frontBundle: "blogs"
   # Hide the post metadata (posted date, reading time, word count), can be used at site level or page level
