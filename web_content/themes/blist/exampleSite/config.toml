@@ -97,6 +97,20 @@ DefaultContentLanguageInSubdir = true
   # Enable search in header
   enableSearch = true
 
+  # Option to customize the search parameters of a page
+  # Below are the supported options; Note that including entire content
+  # may slowdown the loading of search results
+  # Title of page is included by default
+  searchKeys = [
+    "tags",
+    "date",
+    "categories",
+    "summary",
+    "content",
+    "link",
+    "author"
+  ]
+
   # Custom copyright - optional
   copyright = "Copyright © 2021 - Katheryn Fox · All rights reserved"
   favicon = "/favicon.svg"
@@ -117,19 +131,74 @@ DefaultContentLanguageInSubdir = true
   # Can be used at site level or page level
   hideOtherLanguages = false
 
+  # Add support for Table of contents
+  # Can be added to a page level also in markdown frontmatter
+  toc = true
+
+  # Hides the thumbnail in post view
+  # Thumbnails in home and blog pages will still be shown
+  # This setting can also be in page's markdown file
+  hidePageThumbnail = false
+
 [params.homepage.social]
   # Global params common for both languages
   title = "Follow me"
   description = "I work on everything coding and tweet developer memes"
-  twitter = "https://twitter.com/"
-  linkedin = "https://linkedin.com/in/"
-  xing = "https://www.xing.com/profile/"
-  github = "https://github.com/"
-  medium = "https://medium.com/"
-  reddit = "https://reddit.com/"
-  dribbble = "https://dribbble.com/"
-  stackoverflow = "https://stackoverflow.com/"
-  tiktok = "https://tiktok.com"
+
+  [[params.homepage.social.icons]]
+    website = "twitter"
+    url = "https://twitter.com/"
+  [[params.homepage.social.icons]]
+    website = "linkedin"
+    url = "https://linkedin.com/in/"
+  [[params.homepage.social.icons]]
+    website = "xing"
+    url = "https://www.xing.com/profile/"
+  [[params.homepage.social.icons]]
+    website = "telegram"
+    url = "https://t.me/"
+  [[params.homepage.social.icons]]
+    website = "github"
+    url = "https://github.com/"
+  [[params.homepage.social.icons]]
+    website = "buymeacoffee"
+    url = "https://www.buymeacoffee.com/"
+  [[params.homepage.social.icons]]
+    website = "medium"
+    url = "https://medium.com/"
+  [[params.homepage.social.icons]]
+    website = "reddit"
+    url = "https://reddit.com/"
+  [[params.homepage.social.icons]]
+    website = "dribbble"
+    url = "https://dribbble.com/"
+  [[params.homepage.social.icons]]
+    website = "stackoverflow"
+    url = "https://stackoverflow.com/"
+  [[params.homepage.social.icons]]
+    website = "xda"
+    url = "https://forum.xda-developers.com/"
+  [[params.homepage.social.icons]]
+    website = "tiktok"
+    url = "https://tiktok.com"
+  [[params.homepage.social.icons]]
+    website = "googlescholar"
+    url = "https://scholar.google.com/"
+  [[params.homepage.social.icons]]
+    website = "mastodon"
+    url = "https://joinmastodon.org"
+  [[params.homepage.social.icons]]
+    website = "youtube"
+    url = "https://youtube.com"
+  [[params.homepage.social.icons]]
+    website = "instagram"
+    url = "https://instagram.com"
+  [[params.homepage.social.icons]]
+    website = "facebook"
+    url = "https://facebook.com"
+  [[params.homepage.social.icons]]
+    website = "behance"
+    url = "https://behance.net"
 
 [[menu.main]]
   name = "About"

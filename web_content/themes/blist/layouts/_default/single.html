@@ -2,7 +2,7 @@
   {{ $lastmodstr := (partial "date.html" (dict "date" .Lastmod "language" $.Page.Language "format" "long")) }}
   {{ $datestr := (partial "date.html" (dict "date" .Date "language" $.Page.Language "format" "long")) }}
 
-  {{ if .Params.thumbnail }}
+  {{ if (and .Params.thumbnail (not (or .Site.Params.hidePageThumbnail .Params.hidePageThumbnail)) ) }}
   <div class="relative max-w-5xl mx-auto px-4">
     <img src="{{ .Params.thumbnail }}" class="rounded-lg shadow-sm w-full object-contain" />
     {{ if not (or (or .Site.Params.hideMeta .Params.hideMeta) false) }}
@@ -17,7 +17,7 @@
 
     <h1 class="text-2xl font-bold mb-2">{{ .Title }}</h1>
     {{ if not (or (or .Site.Params.hideMeta .Params.hideMeta) false) }}
-    <h5 class="text-sm flex items-center">
+    <h5 class="text-sm flex items-center flex-wrap">
       <svg xmlns="http://www.w3.org/2000/svg" class="mr-1" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
         <rect x="4" y="5" width="16" height="16" rx="2" />
@@ -28,7 +28,7 @@
       </svg>
       {{ $datestr | i18n "postedOnDate" }}
       {{ if ne $datestr $lastmodstr }}
-        &nbsp{{ $lastmodstr | i18n "lastModified" }}</h5><h5 class="text-sm flex items-center">
+        &nbsp{{ $lastmodstr | i18n "lastModified" }}</h5><h5 class="text-sm flex items-center flex-wrap">
       {{ else }}
         &nbsp;&bull;&nbsp;
       {{ end }}
@@ -58,6 +58,10 @@
         {{- end }}
       {{ end }}
     </h5>
+    {{ end }}
+
+    {{ if (or .Site.Params.toc .Params.toc) }}
+    {{- partial "toc.html" . -}}
     {{ end }}
 
     {{ .Content }}
