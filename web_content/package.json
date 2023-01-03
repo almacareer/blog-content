@@ -25,5 +25,8 @@
     "> 1%",
     "maintained node versions",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "utterance": "^1.1.0"
+  }
 }
