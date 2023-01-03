@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Engineering Blog</title>
+    <link>https://engineering-blog.service.prod-internal.consul/</link>
+    <description>Recent content on Engineering Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Dec 2022 09:41:46 +0000</lastBuildDate><atom:link href="https://engineering-blog.service.prod-internal.consul/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jaké jsou v Backstage pluginy a jak je používat?</title>
+      <link>https://engineering-blog.service.prod-internal.consul/blogs/2022-12-19-jak%C3%A9-jsou-v-backstage-pluginy-a-jak-je-pou%C5%BE%C3%ADvat/</link>
+      <pubDate>Mon, 19 Dec 2022 09:41:46 +0000</pubDate>
+      
+      <guid>https://engineering-blog.service.prod-internal.consul/blogs/2022-12-19-jak%C3%A9-jsou-v-backstage-pluginy-a-jak-je-pou%C5%BE%C3%ADvat/</guid>
+      <description>Jaké jsou v Backstage pluginy? Informace prezentované na Backstage se dělí do dvou kategorií:
+data přímo v interní databázi Backstage - strukturovaný popis služeb, systémů, domén, zdrojů, API (tvoří tzv. servisní katalog). Zdrojem jsou primárně catalog_info.yaml soubory uložené a manuálně spravované v Gitu (více zde ). informace dostupné v externích systémech - kontextové informace navázané na základní strukturu servisního katalogu, které ale nejsou uloženy v Backstage. Které informace z externích systémů jsou v Backstage k dispozici?</description>
+    </item>
+    
+    <item>
+      <title>Jak se v Backstage popíše služba?</title>
+      <link>https://engineering-blog.service.prod-internal.consul/blogs/2022-12-07-jak-se-v-backstage-pop%C3%AD%C5%A1e-slu%C5%BEba/</link>
+      <pubDate>Wed, 07 Dec 2022 14:32:40 +0000</pubDate>
+      
+      <guid>https://engineering-blog.service.prod-internal.consul/blogs/2022-12-07-jak-se-v-backstage-pop%C3%AD%C5%A1e-slu%C5%BEba/</guid>
+      <description>Informační model Backstage je postaven okolo komponent. Komponenta může popisovat např. službu, webovou aplikaci, knihovnu, ETL process apod.
+Nejčastější typ komponenty v našem prostředí je služba (Service), proto se na ni podíváme blíže.
+Datový model Backstage s důrazem na službu a její nejbližší okolí vypadá takto:
+Služba představuje externe dostupné a explicitně definované chování softwaru.
+Software samotný je představován Deployment Artifactem, který může poskytovat jednu nebo více služeb. Služba pro svoji činnost potřebuje přistupovat ke zdrojům (Resources) jako jsou databázová schémate, adresáře, frotny apod.</description>
+    </item>
+    
+    <item>
+      <title>Kde jsou uložené informace zobrazované na Backstage?</title>
+      <link>https://engineering-blog.service.prod-internal.consul/blogs/2022-12-07-kde-jsou-ulo%C5%BEen%C3%A9-informace-zobrazovan%C3%A9-na-backstage/</link>
+      <pubDate>Wed, 30 Nov 2022 13:09:08 +0000</pubDate>
+      
+      <guid>https://engineering-blog.service.prod-internal.consul/blogs/2022-12-07-kde-jsou-ulo%C5%BEen%C3%A9-informace-zobrazovan%C3%A9-na-backstage/</guid>
+      <description>Hlavním zdrojem informací pro Backstage je Git (BitBucket, GitHub, &amp;hellip; ). Informace jsou v Gitu uloženy a spravovány stejně jako zdrojové kódy aplikací. Jedná se např. o popis IT služeb, jejich dokumentaci, specifikaci API, používané zdroje (databáze, fronty, &amp;hellip;) nebo architektonická rozhodnutí.
+Každá položka je popsána yaml souborem se stejnou skrukturou a logikou používanou v Kubernetu. Příklad definice služby (kind: Component, spec.type: service):
+apiVersion: backstage.io/v1alpha1 kind: Component metadata: name: consents-consentor description: Collects interactions from customer-facing services in other domains.</description>
+    </item>
+    
+  </channel>
+</rss>
