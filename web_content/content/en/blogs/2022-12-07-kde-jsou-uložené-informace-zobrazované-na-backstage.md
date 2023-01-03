@@ -11,7 +11,7 @@ Hlavním zdrojem informací pro Backstage je Git (BitBucket, GitHub, ... ). Info
 
 Každá položka je popsána yaml souborem se stejnou skrukturou a logikou používanou v Kubernetu. Příklad definice služby (kind: Component, spec.type: service):
 
-```
+```yaml
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
