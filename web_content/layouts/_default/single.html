@@ -65,11 +65,12 @@
     {{ end }}
 
     {{ .Content }}
-  </article>
+    
+    <div class="article-container"></div>
+    {{- partial "comments.html" . }}
+    </div>
 
-  <div class="article-container"></div>
-  {{- partial "comments.html" . }}
-  </div>
+  </article>
 
   {{- partial "social.html" . -}}
 {{ end }}
