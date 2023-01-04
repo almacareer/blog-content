@@ -25,7 +25,7 @@ Na stránce https://backstage.io/plugins je seznam všech oficiálně dostupnýc
 
 Komerčně dostupné pluginy jsou v ekosystému okolo Backstage novinkou. Pionýrem je zde Spotify, tvůrce Backstage. Sadu licencovnaných pluginů byla představena teprve 15.12.2022. Zatím se nabídka skládá z pěti pluginů nabízených formou předplatného. V budoucnu budou tímto předplatným pokryty i nové pluginy. Aktuálně není známo, jaká bude konečná cena předplatného. Popis pluginů najdete https://backstage.spotify.com/plugins/.
 
-V Backstage chceme mít kompletní informace ze všech systémů a aplikací relevatních pro naše služby. Ne ve všech případech je k dispozici plugin pro okamžité použití. Pro tyto případy je možné Backstage rozšířit pluginy vyvinutými na míru. Na tyto situace je Backstage architektonicky připravena tvorba vlastních pluginů je přímo doporučována a proto je vývoj pluginy relativně jednoduchá záležitost. Nejlepším příkladem takového pluginu v našem prostředí je pohled do Narwhala:
+V Backstage chceme mít kompletní informace ze všech systémů a aplikací relevatních pro naše služby. Ne ve všech případech je k dispozici plugin pro okamžité použití. Pro tyto případy je možné Backstage rozšířit pluginy vyvinutými na míru. Tvorba vlastních pluginů je přímo doporučována a proto je jejich vývoj jednoduchý. Nejlepším příkladem takového pluginu v našem prostředí je pohled do Narwhala:
 
 ![Narwhal Plugin](/pictures/backstage-narwhal-plugin.jpg)
 
