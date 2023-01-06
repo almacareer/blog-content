@@ -8,8 +8,6 @@ tags:
 date: 2023-01-06T08:02:34.278Z
 thumbnail: /pictures/backstage-header.png
 ---
-# Jak Backstage  pomůže při integraci s externí službou?
-
 ## Připojení externí služby může být komplikované
 
 Dnešní aplikace se skládají z velkého množství vzájemně integrovaných služeb. To přináší mnoho výhod, ale také problémů. Pro vývojáře je občas složité najít dostatečný popis služby, na kterou se jeho aplikace má integrovat. Zvláštním případem je potom nutnost napojit se na službu externí, kterou vyvíjí úplně jiný tým. Dohledání nutných informací o službě a jejím API bývá časově náročné, specifikace jsou často v nesourodých formátech a neaktualizované. Dochází proto k prodloužení vývoje a výsledná kvalita je v ohrožení.
