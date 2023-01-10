@@ -35,7 +35,7 @@ Backstage umožňuje vlastníkovi služby popsat vše potřebné. Vývojář int
 
 Dále se podíváme na jednotlivé části popisu detailněji.
 
-## Backstage pro vývojáře externí služby
+## Co popisuje vývojář externí služby?
 
 ### Základní informace nutné k dohledání služby
 
@@ -131,15 +131,15 @@ servers:
 ...
 ```
 
-## Backstage pro vývojáře integrace
+## Co potřebuje udělat vývojář integrace?
 
-## Najít popis externí služby, resp. jejího API
+### Najít popis externí služby, resp. jejího API
 
 Pro nalezení externí služby může vývojář použít tyto části Backstage především API explorer, případně obecnější fulltext search nebo katalog a jeho relace. Ukázka API exploreru s filtrem pro API z domény `consents`:
 
 ![](/pictures/jak_backstag_pomuze_pri_integraci-api_catalog.jpg)
 
-## Vyvinout integraci se službou
+### Vyvinout integraci se službou
 
 Při vývoji služby poslouží Backstage jako reference pro dokumentaci API. Každé API má stabilní adresu, kterou je proto možné uložit nebo sdílet s ostatními. Backstage dále umožňuje přidat každou položku katalogu do seznamu oblíbených. 
 
@@ -147,7 +147,7 @@ Rychlý přístup k často používaným API specifikacím zrychluje orientaci v
 
 ![](/pictures/jak_backstag_pomuze_pri_integraci-favourites.jpg)
 
-## Deklarovat použití API u záznamu pro Backstage katalog
+### Deklarovat použití API u záznamu pro Backstage katalog
 
 Jakmile je integrace vyvinuta, je nutné doplnit tuto skutečnost do specifikace služby. V Backstage je možné u každé služby definovat seznam API, která služba konzumuje. Vznikne tak cenná informace pro poskytovatele služby - bude si vědom, kdo a proč na jeho službě závisí.  V `catalog_info.yaml` souboru se jedná o položku `consumedAPIs`:
 
