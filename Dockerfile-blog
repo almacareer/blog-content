@@ -1,5 +1,6 @@
 # Pull nginx image
-FROM dcreg.service.consul/dev/nginx:alpine as build
+# FROM dcreg.service.consul/dev/nginx:alpine as build
+FROM nginx:alpine as build # outside dcreg for aws testing purposes, should be migrated into ECR in the future
 
 WORKDIR /tmp
 
