@@ -4,13 +4,16 @@ on:
     branches:
       - '*'
 
+
 jobs:
   build:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: true
       matrix:
         branch: [main, master, dev, feature/*]
+        
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
