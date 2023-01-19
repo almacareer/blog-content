@@ -30,7 +30,7 @@ jobs:
       run: |
         for file in $(find . -name "Dockerfile*"); do
           image_name=${{ github.event.repository.name }} # previous version: $(echo $file | awk -F '/' '{print $2}')
-          tag_name=${{ matrix.branch }}
+          tag_name=${{ matrix.branch }}-${{ github.sha }}
           echo "Building image $image_name:$tag_name"
           docker build -t 035814641800.dkr.ecr.eu-west-1.amazonaws.com/$image_name:$tag_name -f $file .
           echo "Pushing image $image_name:$tag_name"
