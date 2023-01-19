@@ -13,10 +13,6 @@ jobs:
       fail-fast: true
       matrix:
         branch: [main, master, dev, feature/*]
-resources:
-  requests:
-    memory: 4GB
-    cpu: 2
         
     steps:
     - name: Checkout code
