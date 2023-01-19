@@ -13,6 +13,10 @@ jobs:
       fail-fast: true
       matrix:
         branch: [main, master, dev, feature/*]
+resources:
+  requests:
+    memory: 4GB
+    cpu: 2
         
     steps:
     - name: Checkout code
@@ -40,3 +44,4 @@ jobs:
           echo "Pushing image $image_name:$tag_name"
           docker push 035814641800.dkr.ecr.eu-west-1.amazonaws.com/$image_name:$tag_name
         done
+
