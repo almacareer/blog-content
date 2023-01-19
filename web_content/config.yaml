@@ -76,6 +76,20 @@ params:
         - website: github
           url: "https://github.com/almacareer"
 
+  # Enable comments
+  comments:
+    system: giscus
+    repo: "almacareer/engineering-blog"
+    repoid: "R_kgDOILksLw"
+    category: "Comments"
+    categoryid: "DIC_kwDOILksL84CTYY4"
+    mapping: "title"
+    strict: "0"
+    reactionsenabled: "1"
+    emitmetadata: "0"
+    inputposition: "bottom"
+    theme: "dark_dimmed"
+
 markup:
   highlight:
     style: dracula
