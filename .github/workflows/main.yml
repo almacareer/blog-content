@@ -53,6 +53,7 @@ jobs:
       run: |
         export IMAGE_VERSION="${GITHUB_REF##*/}-${{ github.sha }}"
         echo "Latest version is: $IMAGE_VERSION"
+        pwd
         git clone git@github.com:almacareer/engineering-blog--k8s.git
         export VERSION_CHART=$(grep -oP 'appVersion: .*' engineering-blog--k8s/engineering-blog/Chart.yaml | awk '{ print $2 }')
 
