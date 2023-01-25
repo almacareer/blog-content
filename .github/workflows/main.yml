@@ -9,6 +9,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
 
+    steps:
     - name: Update image in Helm Chart
       uses: actions/checkout@v3
       run: |
