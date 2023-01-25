@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Clean working directory
+      uses: AutoModality/action-clean@v1
+      uses: actions/checkout@v2
+
     - name: Check out code
       uses: actions/checkout@v3
     
