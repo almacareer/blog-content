@@ -15,6 +15,7 @@ jobs:
       with:
         repository: almacareer/engineering-blog--k8s
         ref: aws
+        ssh-key: ${{ secrets.SSH_KEY }}
 
     - name: Update image in Helm Chart
       run: |
