@@ -44,6 +44,6 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: almacareer/engineering-blog--k8s
-        ref: aws
+        ref: master
         path: engineering-blog--k8s
         ssh-key: ${{ secrets.SSH_KEY }}
