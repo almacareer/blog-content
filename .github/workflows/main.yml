@@ -20,6 +20,7 @@ jobs:
     - name: Update image in Helm Chart
       run: |
         echo "Latest version is: aws-fd6ea9e6e89e9a437d915dc2fb341e6298b08985"
+        echo "Location: $GITHUB_WORKSPACE"
         export VERSION_CHART=$(grep -oP 'appVersion: .*' $GITHUB_WORKSPACE/engineering-blog--k8s/engineering-blog/Chart.yaml | awk '{ print $2 }')
 
         if [ "${IMAGE_VERSION}" == "${VERSION_CHART}" ]; then
