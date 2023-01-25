@@ -12,8 +12,7 @@ jobs:
     steps:
     - name: Clean working directory
       run: |
-        cd $GITHUB_WORKSPACE
-        rm -rf *
+        rm -rf engineering-blog--k8s
 
     - name: Check out code
       uses: actions/checkout@v3
