@@ -12,7 +12,8 @@ jobs:
     steps:
     - name: Clean working directory
       run: |
-        rm -rf $GITHUB_WORKSPACE/*
+        cd $GITHUB_WORKSPACE
+        rm -rf *
 
     - name: Check out code
       uses: actions/checkout@v3
@@ -33,8 +34,8 @@ jobs:
         ECR_REGISTRY: "035814641800.dkr.ecr.eu-west-1.amazonaws.com" # ??? # ${{ steps.login-ecr.outputs.registry }}
       run: |
         for file in $(find . -name "Dockerfile*"); do
-          export image_name=${{ github.event.repository.name }}
-          export tag_name=${GITHUB_REF##*/}-${{ github.sha }}
+          image_name=${{ github.event.repository.name }}
+          tag_name=${GITHUB_REF##*/}-${{ github.sha }}
           echo "Building image $image_name:$tag_name"
           docker build -t $ECR_REGISTRY/$image_name:$tag_name -f $file .
           echo "Pushing image $image_name:$tag_name"
@@ -51,7 +52,7 @@ jobs:
 
     - name: Update image in Helm Chart
       run: |
-        export IMAGE_VERSION="$image_name:$tag_name"
+        export IMAGE_VERSION="${GITHUB_REF##*/}-${{ github.sha }}"
         echo "Latest version is: $IMAGE_VERSION"
         git clone git@github.com:almacareer/engineering-blog--k8s.git
         export VERSION_CHART=$(grep -oP 'appVersion: .*' engineering-blog--k8s/engineering-blog/Chart.yaml | awk '{ print $2 }')
