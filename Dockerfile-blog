@@ -33,8 +33,8 @@ RUN hugo -D -s /home/engineering-blog/web_content -d /usr/share/nginx/html
 
 WORKDIR /usr/share/nginx/html
 
-# Run docker service on HTTPS
-EXPOSE 443
+# Run docker service on HTTP
+EXPOSE 80
 
 # Popy the additional nginx configuration
 COPY maintanence.conf /etc/nginx/conf.d/maintanence.conf
