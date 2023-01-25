@@ -15,7 +15,6 @@ jobs:
       with:
         repository: almacareer/engineering-blog--k8s
         ref: aws
-        path: /
 
     - name: Update image in Helm Chart
       run: |
