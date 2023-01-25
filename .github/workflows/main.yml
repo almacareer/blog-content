@@ -10,12 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Update image in Helm Chart
+    - name: Clone related k8s repo
       uses: actions/checkout@v3
+      with:
+        owner: almacareer
+        repository: engineering-blog--k8s
+
+    - name: Update image in Helm Chart
       run: |
         export IMAGE_VERSION="$image_name:$tag_name"
         echo "Latest version is: $IMAGE_VERSION"
-        git clone git@github.com:almacareer/engineering-blog--k8s.git
         export VERSION_CHART=$(grep -oP 'appVersion: .*' engineering-blog--k8s/engineering-blog/Chart.yaml | awk '{ print $2 }')
 
         if [ "${IMAGE_VERSION}" == "${VERSION_CHART}" ]; then
