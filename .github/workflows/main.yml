@@ -38,21 +38,21 @@ jobs:
         done
     
     - name: Update image in helm chart
-          run: |
-            export IMAGE_VERSION="$image_name:$tag_name"
-            echo "Latest version is: $IMAGE_VERSION"
-            git clone ssh://git@bitbucket.lmc.cz:7999/archi/engineering-blog--k8s.git
-            export VERSION_CHART=$(grep -oP 'appVersion: .*' engineering-blog--k8s/engineering-blog/Chart.yaml | awk '{ print $2 }')
+      run: |
+        export IMAGE_VERSION="$image_name:$tag_name"
+        echo "Latest version is: $IMAGE_VERSION"
+        git clone ssh://git@bitbucket.lmc.cz:7999/archi/engineering-blog--k8s.git
+        export VERSION_CHART=$(grep -oP 'appVersion: .*' engineering-blog--k8s/engineering-blog/Chart.yaml | awk '{ print $2 }')
 
-            if [ "${IMAGE_VERSION}" == "${VERSION_CHART}" ]; then
-              echo "Nothing to change."
-              exit 0
-            fi
+        if [ "${IMAGE_VERSION}" == "${VERSION_CHART}" ]; then
+          echo "Nothing to change."
+          exit 0
+        fi
 
-            sed -i -r -e "s/appVersion: .*/appVersion: $IMAGE_VERSION/" engineering-blog--k8s/engineering-blog/Chart.yaml
-            cd engineering-blog--k8s/
-            git add --all
-            git config user.name github-actions
-            git config user.email github-actions@github.com
-            git commit -am "version: $IMAGE_VERSION"
-            git push origin HEAD:master
+        sed -i -r -e "s/appVersion: .*/appVersion: $IMAGE_VERSION/" engineering-blog--k8s/engineering-blog/Chart.yaml
+        cd engineering-blog--k8s/
+        git add --all
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git commit -am "version: $IMAGE_VERSION"
+        git push origin HEAD:master
