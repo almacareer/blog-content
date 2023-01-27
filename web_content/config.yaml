@@ -24,9 +24,12 @@ languages:
       logo: /logo.png
     menu:
       main:
+        - name: "Admin"
+          url: admin/
+          weight: 3
         - name: Tags
           url: tags/
-          weight: 0
+          weight: 2
         - name: "Blogs"
           url: blogs/
           weignt: 1
