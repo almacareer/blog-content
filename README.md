@@ -2,14 +2,13 @@ This repo is a source code for:
 
 **ENGINEERING BLOG**
 
-Avaiable at: https://engineering-blog.service.prod-internal.consul/
+Avaiable at: https://engineering-blog.sandbox.dex.almacareer.net/
 
-CI/CD:
-- Git Push trigger webhook via [Webhookrelay](https://webhookrelay.com/)
-- Jenkins image build
-- Jenkins Helm Chart editing
-- Spinnaker deployment
+CI:
+- Github Action build and push to AWS ECR
+- Github Action [Helm Chart](https://github.com/almacareer/engineering-blog--k8s) image update
+
+CD:
+- GithubAction [Helm Chart](https://github.com/almacareer/engineering-blog--k8s) deployment to AWS EKS
 
 *(By Developers Experience)*
-
-***testing github actions CI*** Run: 7
