@@ -1,4 +1,4 @@
-baseURL: "https://engineering-blog.service.prod-internal.consul"
+baseURL: "https://engineering-blog.sandbox.dex.almacareer.net"
 metaDataFormat: "yaml"
 languageCode: "en-us"
 title: "Engineering Blog"
