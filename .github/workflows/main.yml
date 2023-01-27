@@ -10,11 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Clean Workspace
+      uses: AutoModality/action-clean@v1
+    
     - name: Check out code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v1-node16
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -36,3 +39,11 @@ jobs:
           echo "Pushing image $image_name:$tag_name"
           docker push $ECR_REGISTRY/$image_name:$tag_name
         done
+    
+    - name: Clone related k8s repo
+      uses: actions/checkout@v3
+      with:
+        repository: almacareer/engineering-blog--k8s
+        ref: master
+        path: engineering-blog--k8s
+        ssh-key: ${{ secrets.SSH_KEY }}
