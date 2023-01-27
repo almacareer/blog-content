@@ -26,13 +26,14 @@ languages:
       main:
         - name: "Blogs"
           url: blogs/
-          weignt: 1
-        - name: Tags
+          weight: 1
+        - name: "Tags"
           url: tags/
           weight: 2
         - name: "Login"
           url: admin/
           weight: 3
+
 
 params:
   darkModeToggle: true
