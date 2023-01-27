@@ -24,15 +24,15 @@ languages:
       logo: /logo.png
     menu:
       main:
-        - name: "Admin"
-          url: admin/
-          weight: 3
+        - name: "Blogs"
+          url: blogs/
+          weight: 1
         - name: Tags
           url: tags/
           weight: 2
-        - name: "Blogs"
-          url: blogs/
-          weignt: 1
+        - name: "Login"
+          url: admin/
+          weight: 3
 
 params:
   darkModeToggle: true
