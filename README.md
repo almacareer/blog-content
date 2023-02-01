@@ -4,6 +4,8 @@ This repo is a source code for:
 
 Avaiable at: https://engineering-blog.service.prod-internal.consul/
 
+[![CI](https://github.com/almacareer/engineering-blog/actions/workflows/main.yml/badge.svg)](https://github.com/almacareer/engineering-blog/actions/workflows/main.yml)
+
 CI/CD:
 - Git Push trigger webhook via [Webhookrelay](https://webhookrelay.com/)
 - Jenkins image build
@@ -11,5 +13,3 @@ CI/CD:
 - Spinnaker deployment
 
 *(By Developers Experience)*
-
-***testing github actions CI*** Run: 7
