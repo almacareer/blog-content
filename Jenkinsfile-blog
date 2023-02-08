@@ -28,7 +28,7 @@ pipeline {
                     step([$class: 'WsCleanup'])
             
                     // checkout project
-                    git url: 'git@github.com:lmc-eu/engineering-blog.git', branch: "$env.BRANCH_NAME", credentialsId: '12488fbd-4843-4d1a-897d-eeff450020f9'
+                    git url: 'git@github.com:lmc-eu/blog-content.git', branch: "$env.BRANCH_NAME", credentialsId: '12488fbd-4843-4d1a-897d-eeff450020f9'
                     
                     
                     version = "0.2.${env.BUILD_ID}"
@@ -85,7 +85,7 @@ pipeline {
         stage('Trigger Helm Chart Job') {
             steps {
                 script {
-                    def job = build job: 'k8s-engineering-blog', parameters: [[$class: "StringParameterValue", name: "IMAGE_VERSION", value: "$version"]]
+                    def job = build job: 'blog-content--k8s', parameters: [[$class: "StringParameterValue", name: "IMAGE_VERSION", value: "$version"]]
             
                     // cleanup workspace
                     step([$class: 'WsCleanup'])
