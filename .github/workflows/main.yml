@@ -33,7 +33,7 @@ jobs:
       run: |
         for file in $(find . -name "Dockerfile*"); do
           image_name=engineering-blog
-          tag_name=${GITHUB_REF##*/}-${{ github.sha }}
+          tag_name=${GITHUB_REF##*/}-$${GITHUB_SHA::7}
           echo "Building image $image_name:$tag_name"
           docker build -t $ECR_REGISTRY/$image_name:$tag_name -f $file .
           echo "Pushing image $image_name:$tag_name"
