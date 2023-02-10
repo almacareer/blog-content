@@ -33,7 +33,7 @@ jobs:
       run: |
         for file in $(find . -name "Dockerfile*"); do
           image_name=engineering-blog
-          tag_name=${GITHUB_REF##*/}-$${GITHUB_SHA::7}
+          tag_name=${GITHUB_REF##*/}-${GITHUB_SHA::7}
           echo "Building image $image_name:$tag_name"
           docker build -t $ECR_REGISTRY/$image_name:$tag_name -f $file .
           echo "Pushing image $image_name:$tag_name"
@@ -50,7 +50,7 @@ jobs:
 
     - name: Update image in Helm Chart
       run: |
-        export IMAGE_VERSION="${GITHUB_REF##*/}-${{ github.sha }}"
+        export IMAGE_VERSION="${GITHUB_REF##*/}-${GITHUB_SHA::7}"
         echo "Latest version is: $IMAGE_VERSION"
         export VERSION_CHART=$(grep -oP 'appVersion: .*' blog-content--k8s/engineering-blog/Chart.yaml | awk '{ print $2 }')
 
