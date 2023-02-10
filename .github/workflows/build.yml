@@ -62,7 +62,7 @@ jobs:
         sed -i -r -e "s/appVersion: .*/appVersion: $IMAGE_VERSION/" blog-content--k8s/engineering-blog/Chart.yaml
         cd blog-content--k8s/
         git add --all
-        git config user.name github-actions
+        git config user.name GitHub Action
         git config user.email github-actions@github.com
         git commit -am "version: $IMAGE_VERSION"
         git push origin HEAD:aws
