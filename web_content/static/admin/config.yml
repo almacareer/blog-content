@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: almacareer/blog-content
-  branch: master
+  branch: aws
   auth_type: implicit
   base_url: https://blog-oauth.sandbox.dex.almacareer.net
     
