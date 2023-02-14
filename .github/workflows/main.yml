@@ -24,8 +24,8 @@ jobs:
   build:
     runs-on: self-hosted
     needs:
-      - name: create-runner
-        uses: ./.github/workflows/runner-create.yaml
+      - create-runner
+      
     steps:
       - name: Check out code
         uses: actions/checkout@v2
