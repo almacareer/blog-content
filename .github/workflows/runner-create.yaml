@@ -25,3 +25,4 @@ jobs:
           security-group-ids: sg-00569d47240ff3c20
           github-repository: almacareer/blog-content
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          label: 'Key=Name,Value=my-runner'
