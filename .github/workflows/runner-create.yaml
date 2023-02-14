@@ -19,7 +19,7 @@ jobs:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: eu-west-1
-          ami-id: ami-0d5d9d301c853a04a
+          ec2-image-id: ami-0d5d9d301c853a04a
           instance-type: t2.micro
           subnet-id: subnet-0114278bab913da56
           security-group-ids: sg-00569d47240ff3c20
