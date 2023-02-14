@@ -24,4 +24,8 @@ jobs:
           subnet-id: subnet-0114278bab913da56
           security-group-id: sg-00569d47240ff3c20
           github-token: ${{ secrets.RUNNER_GH_TOKEN }}
-          label: 'Key=Name,Value=my-runner'
+          aws-resource-tags: >
+            [
+              {"Key": "Name", "Value": "ec2-github-runner"},
+              {"Key": "GitHubRepository", "Value": "${{ github.repository }}"}
+            ]
