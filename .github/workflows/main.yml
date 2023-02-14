@@ -30,12 +30,6 @@ jobs:
               {"Key": "Name", "Value": "ec2-github-runner"},
               {"Key": "GitHubRepository", "Value": "${{ github.repository }}"}
             ]
-          startup-script: |
-            #!/bin/bash
-            yum update -y
-            amazon-linux-extras install docker
-            service docker start
-            usermod -a -G docker ec2-user
             
   do-the-job:
     runs-on: self-hosted
@@ -61,6 +55,13 @@ jobs:
         env:
           ECR_REGISTRY: "035814641800.dkr.ecr.eu-west-1.amazonaws.com" # ??? # ${{ steps.login-ecr.outputs.registry }}
         run: |
+          # make sure we have docker installed
+          yum update -y
+          amazon-linux-extras install docker
+          service docker start
+          usermod -a -G docker ec2-user
+          
+          # docker images build
           for file in $(find . -name "Dockerfile*"); do
             image_name=engineering-blog
             tag_name=${GITHUB_REF##*/}-${{ github.sha }}
