@@ -8,7 +8,7 @@ on:
 jobs:
   # spust EC2 pro build mimo github
   create-runner:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     steps:
       - name: Create EC2 Runner
         uses: ./.github/workflows/runner-create.yaml
@@ -46,7 +46,7 @@ jobs:
 
   # uz muzes EC2 zabit, protoze build skoncil
   destroy-runner:
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     steps:
       - name: Destroy EC2 Runner
         uses: ./.github/workflows/runner-destroy.yaml
