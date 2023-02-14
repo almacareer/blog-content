@@ -30,11 +30,12 @@ jobs:
               {"Key": "Name", "Value": "ec2-github-runner"},
               {"Key": "GitHubRepository", "Value": "${{ github.repository }}"}
             ]
-          user-data: |
+          startup-script: |
             #!/bin/bash
-            amazon-linux-extras install docker
-            service docker start
-            usermod -a -G docker ec2-user
+            sudo yum update -y
+            sudo amazon-linux-extras install docker
+            sudo service docker start
+            sudo usermod -a -G docker ec2-user
             
   do-the-job:
     runs-on: self-hosted
