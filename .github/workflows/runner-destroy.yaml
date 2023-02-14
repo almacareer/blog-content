@@ -19,8 +19,10 @@ jobs:
         uses: machulav/ec2-github-runner@v2
         with:
           mode: stop
-          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           github-token: ${{ secrets.RUNNER_GH_TOKEN }}
-          label: 'Key=Name,Value=my-runner'
+          aws-resource-tags: >
+            [
+              {"Key": "Name", "Value": "ec2-github-runner"},
+              {"Key": "GitHubRepository", "Value": "${{ github.repository }}"}
+            ]
           destroy: true
