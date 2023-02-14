@@ -1,0 +1,21 @@
+---
+name: Destroy EC2 Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  destroy-runner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Destroy EC2 Runner
+        uses: machulav/ec2-github-runner@v2
+        with:
+          name: my-runner
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: eu-west-1
+          destroy: true
