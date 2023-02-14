@@ -9,6 +9,9 @@ jobs:
   # spust EC2 pro build mimo github
   create-runner:
     runs-on: ubuntu-latest
+    outputs:
+      label: ${{ steps.create-runner.outputs.label }}
+      ec2-instance-id: ${{ steps.create-runner.outputs.ec2-instance-id }}
     steps:
       - name: Create EC2 Runner
         uses: ./.github/workflows/runner-create.yaml
@@ -51,3 +54,6 @@ jobs:
     steps:
       - name: Destroy EC2 Runner
         uses: ./.github/workflows/runner-destroy.yaml
+        with:
+          label: ${{ needs.runner-start.outputs.label }}
+          ec2-instance-id: ${{ needs.runner-start.outputs.ec2-instance-id }}
