@@ -14,7 +14,6 @@ jobs:
       - name: Create EC2 Runner
         uses: machulav/ec2-github-runner@v2
         with:
-          name: my-runner
           mode: start
           ec2-image-id: ami-0d5d9d301c853a04a
           instance-type: t2.micro
