@@ -16,8 +16,8 @@ jobs:
         with:
           mode: start
           ec2-image-id: ami-0d5d9d301c853a04a
-          instance-type: t2.micro
+          ec2-instance-type: t2.micro
           subnet-id: subnet-0114278bab913da56
-          security-group-ids: sg-00569d47240ff3c20
+          security-group-id: sg-00569d47240ff3c20
           github-token: ${{ secrets.GITHUB_TOKEN }}
           label: 'Key=Name,Value=my-runner'
