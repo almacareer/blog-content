@@ -14,10 +14,12 @@ jobs:
       ec2-instance-id: ${{ steps.create-runner.outputs.ec2-instance-id }}
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          Default: ${{ github.repository }}
         
       - name: Create EC2 Runner
-        uses: ./.github/actions/runner-create@master
+        uses: ./.github/workflows/runner-create.yaml
         
   build:
     runs-on: self-hosted
@@ -56,10 +58,12 @@ jobs:
     needs: build
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          Default: ${{ github.repository }}
         
       - name: Destroy EC2 Runner
-        uses: ./.github/actions/runner-destroy@master
+        uses: ./.github/workflows/runner-destroy.yaml
         with:
           label: ${{ needs.runner-start.outputs.label }}
           ec2-instance-id: ${{ needs.runner-start.outputs.ec2-instance-id }}
