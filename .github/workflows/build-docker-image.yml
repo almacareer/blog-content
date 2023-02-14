@@ -1,1 +1,60 @@
 ---
+name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+    needs: [create-runner]
+    
+    steps:
+    - name: Clean Workspace
+      uses: AutoModality/action-clean@v1
+    
+    - name: Check out code
+      uses: actions/checkout@v3
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1-node16
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-west-1
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
+      env:
+        ECR_REGISTRY: "035814641800.dkr.ecr.eu-west-1.amazonaws.com" # ??? # ${{ steps.login-ecr.outputs.registry }}
+      run: |
+        for file in $(find . -name "Dockerfile*"); do
+          image_name=engineering-blog
+          tag_name=${GITHUB_REF##*/}-${{ github.sha }}
+          echo "Building image $image_name:$tag_name"
+          docker build -t $ECR_REGISTRY/$image_name:$tag_name -f $file .
+          echo "Pushing image $image_name:$tag_name"
+          docker push $ECR_REGISTRY/$image_name:$tag_name
+        done
+    
+    - name: Clone related k8s repo
+      uses: actions/checkout@v3
+      with:
+        repository: almacareer/blog-content--k8s
+        ref: master
+        path: blog-content--k8s
+        ssh-key: ${{ secrets.SSH_KEY }}
+
+  cleanup:
+    needs: [build]
+    runs-on: self-hosted
+    steps:
+      - name: Cleanup
+        run: |
+          # commands to cleanup after Docker build here
+    needs: [destroy-runner]
