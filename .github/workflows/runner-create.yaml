@@ -15,6 +15,7 @@ jobs:
         uses: machulav/ec2-github-runner@v2
         with:
           name: my-runner
+          mode: new
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: eu-west-1
