@@ -21,7 +21,7 @@ jobs:
         uses: machulav/ec2-github-runner@v2
         with:
           mode: start
-          ec2-image-id: ami-0ae92cf6a0a5d24d0
+          ec2-image-id: ami-0e1dc7c0757fa9cdc
           ec2-instance-type: t2.micro
           subnet-id: subnet-0114278bab913da56
           security-group-id: sg-00569d47240ff3c20
@@ -31,6 +31,9 @@ jobs:
               {"Key": "Name", "Value": "ec2-github-runner"},
               {"Key": "GitHubRepository", "Value": "${{ github.repository }}"}
             ]
+            
+      - name: Install Docker
+        uses: docker/setup-docker@v1
             
   do-the-job:
     runs-on: self-hosted
