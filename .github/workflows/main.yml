@@ -16,7 +16,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          Default: ${{ github.repository }}
+          repository: ${{ github.repository }}
         
       - name: Create EC2 Runner
         uses: ./runner-create.yaml
@@ -60,7 +60,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          Default: ${{ github.repository }}
+          repository: ${{ github.repository }}
         
       - name: Destroy EC2 Runner
         uses: ./runner-destroy.yaml
