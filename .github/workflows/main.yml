@@ -34,7 +34,7 @@ jobs:
   do-the-job:
     runs-on: self-hosted
     needs:
-      - create-runner
+      - start-runner
       
     steps:
       - name: Check out code
