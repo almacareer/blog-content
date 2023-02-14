@@ -1,0 +1,22 @@
+---
+name: Runner Create/Destroy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-runner:
+    runs-on: self-hosted
+    steps:
+      - name: Create Runner
+        uses: machulav/ec2-github-runner@v2
+        with:
+          # specify runner configuration here
+
+  destroy-runner:
+    runs-on: self-hosted
+    steps:
+      - name: Destroy Runner
+        uses: machulav/ec2-github-runner@v2
+        with:
+          # specify runner configuration here
