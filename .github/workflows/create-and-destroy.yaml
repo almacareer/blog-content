@@ -1,14 +1,15 @@
 ---
-name: Runner Create/Destroy
+---
+name: Create and Destroy Runner
 
 on:
   workflow_dispatch:
 
 jobs:
   create-runner:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
-      - name: Create Runner
+      - name: Create self-hosted runner
         uses: machulav/ec2-github-runner@v2
         with:
           name: blog-content-runner
@@ -20,19 +21,19 @@ jobs:
           instance_type: t2.micro
           subnet_id: subnet-0114278bab913da56
           security_group_id: sg-00569d47240ff3c20
+      - name: Set outputs
+        id: runner
+        run: |
+          echo "::set-output name=runner-id::$(cat /tmp/.runner_id)"
+          echo "::set-output name=runner-name::$(cat /tmp/.runner_name)"
 
   destroy-runner:
-    runs-on: self-hosted
+    needs: [create-runner]
+    runs-on: ubuntu-latest
     steps:
-      - name: Destroy Runner
+      - name: Destroy self-hosted runner
         uses: machulav/ec2-github-runner@v2
         with:
-          name: blog-content-runner
-          image_id: ami-0e1dc7c0757fa9cdc
-          token: ${{ secrets.GITHUB_TOKEN }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
-          instance_type: t2.micro
-          subnet_id: subnet-0114278bab913da56
-          security_group_id: sg-00569d47240ff3c20
+          version: '2'
+          id: ${{ needs.create-runner.outputs.runner-id }}
+          token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
