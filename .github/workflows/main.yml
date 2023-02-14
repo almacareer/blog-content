@@ -6,24 +6,26 @@ on:
       - master
 
 jobs:
-  # spust EC2 pro build mimo github
-  create-runner:
-    runs-on: ubuntu-latest
-    outputs:
-      label: ${{ steps.create-runner.outputs.label }}
-      ec2-instance-id: ${{ steps.create-runner.outputs.ec2-instance-id }}
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-        with:
-          repository: ${{ github.repository }}
-        
-      - name: Create EC2 Runner
-        uses: ./runner-create.yaml
+  ## spust EC2 pro build mimo github
+  #create-runner:
+  #  runs-on: ubuntu-latest
+  #  outputs:
+  #    label: ${{ steps.create-runner.outputs.label }}
+  #    ec2-instance-id: ${{ steps.create-runner.outputs.ec2-instance-id }}
+  #  steps:
+  #    - name: Check out code
+  #      uses: actions/checkout@v3
+  #      with:
+  #        repository: ${{ github.repository }}
+  #      
+  #    - name: Create EC2 Runner
+  #      uses: ./.github/workflows/runner-create.yaml
         
   build:
     runs-on: self-hosted
-    needs: create-runner
+    needs:
+      - name: create-runner
+        uses: ./.github/workflows/runner-create.yaml
     steps:
       - name: Check out code
         uses: actions/checkout@v2
