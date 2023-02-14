@@ -57,3 +57,9 @@ jobs:
       - name: Cleanup
         run: |
           # commands to cleanup after Docker build here
+          
+  dummy:
+    runs-on: self-hosted
+    steps:
+      - name: Dummy Step
+        run: echo "This is a dummy step"
