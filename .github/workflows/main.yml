@@ -19,7 +19,7 @@ jobs:
           Default: ${{ github.repository }}
         
       - name: Create EC2 Runner
-        uses: ./.github/workflows/runner-create.yaml
+        uses: ./runner-create.yaml
         
   build:
     runs-on: self-hosted
@@ -63,7 +63,7 @@ jobs:
           Default: ${{ github.repository }}
         
       - name: Destroy EC2 Runner
-        uses: ./.github/workflows/runner-destroy.yaml
+        uses: ./runner-destroy.yaml
         with:
           label: ${{ needs.runner-start.outputs.label }}
           ec2-instance-id: ${{ needs.runner-start.outputs.ec2-instance-id }}
