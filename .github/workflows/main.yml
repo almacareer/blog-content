@@ -21,7 +21,8 @@ jobs:
         uses: machulav/ec2-github-runner@v2
         with:
           mode: start
-          ec2-image-id: ami-05f7491af5eef733a
+          ec2-image-id: ami-08905b5128c498feb # ubuntu 20.04 LTS with docker
+                                              # https://cloud-images.ubuntu.com/locator/ec2/
           ec2-instance-type: t2.micro
           subnet-id: subnet-0114278bab913da56
           security-group-id: sg-00569d47240ff3c20
