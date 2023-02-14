@@ -24,4 +24,4 @@ jobs:
           subnet-id: subnet-0114278bab913da56
           security-group-ids: sg-00569d47240ff3c20
           github-repository: almacareer/blog-content
-          github-runner-token: ${{ secrets.GITHUB_RUNNER_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
