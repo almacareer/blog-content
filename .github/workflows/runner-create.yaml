@@ -21,3 +21,6 @@ jobs:
           security-group-id: sg-00569d47240ff3c20
           github-token: ${{ secrets.RUNNER_GH_TOKEN }}
           label: 'Key=Name,Value=my-runner'
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: eu-west-1  # Replace with your preferred region
