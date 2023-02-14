@@ -1,0 +1,26 @@
+---
+name: Create EC2 Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-runner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Create EC2 Runner
+        uses: machulav/ec2-github-runner@v2
+        with:
+          name: my-runner
+          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: eu-west-1
+          ami-id: ami-0d5d9d301c853a04a
+          instance-type: t2.micro
+          subnet-id: subnet-0123456789abcdefg
+          security-group-ids: sg-0123456789abcdefg
+          github-repository: almacareer/blog-content
+          github-runner-token: ${{ secrets.GITHUB_RUNNER_TOKEN }}
