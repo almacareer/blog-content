@@ -11,7 +11,13 @@ jobs:
       - name: Create Runner
         uses: machulav/ec2-github-runner@v2
         with:
-          # specify runner configuration here
+          name: blog-content-runner
+          repository: your-username/your-repo
+          token: ${{ secrets.GITHUB_TOKEN }}
+          region: us-west-2
+          instance_type: t2.micro
+          subnet_id: subnet-0123456789abcdef0
+          security_group_id: sg-0123456789abcdef0
 
   destroy-runner:
     runs-on: self-hosted
