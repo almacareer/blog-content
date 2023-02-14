@@ -6,14 +6,17 @@ on:
       - master
 
 jobs:
-  build-and-destroy:
-    runs-on: self-hosted
+  # spust EC2 pro build mimo github
+  create-runner:
+    runs-on: ubuntu
     steps:
-      # spust EC2 pro build mimo github
       - name: Create EC2 Runner
         uses: ./.github/workflows/runner-create.yaml
         if: ${{ github.event_name == 'workflow_dispatch' }}
-    
+        
+  build:
+    runs-on: self-hosted
+    steps:
       - name: Check out code
         uses: actions/checkout@v3
 
@@ -41,7 +44,10 @@ jobs:
             docker push $ECR_REGISTRY/$image_name:$tag_name
           done
 
-      # uz muzes EC2 zabit, protoze build skoncil
+  # uz muzes EC2 zabit, protoze build skoncil
+  destroy-runner:
+    runs-on: ubuntu
+    steps:
       - name: Destroy EC2 Runner
         uses: ./.github/workflows/runner-destroy.yaml
         if: ${{ github.event_name == 'workflow_dispatch' }}
