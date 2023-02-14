@@ -12,7 +12,7 @@ jobs:
         uses: machulav/ec2-github-runner@v2
         with:
           name: blog-content-runner
-          repository: ami-0e1dc7c0757fa9cdc
+          image_id: ami-0e1dc7c0757fa9cdc
           token: ${{ secrets.GITHUB_TOKEN }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -28,7 +28,7 @@ jobs:
         uses: machulav/ec2-github-runner@v2
         with:
           name: blog-content-runner
-          repository: ami-0e1dc7c0757fa9cdc
+          image_id: ami-0e1dc7c0757fa9cdc
           token: ${{ secrets.GITHUB_TOKEN }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
