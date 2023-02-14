@@ -19,7 +19,8 @@ jobs:
         uses: machulav/ec2-github-runner@v2
         with:
           mode: stop
-          github-token: ${{ secrets.RUNNER_GH_TOKEN }}
+         # ec2-instance-id: ""
+         # label: ""
           aws-resource-tags: >
             [
               {"Key": "Name", "Value": "ec2-github-runner"},
