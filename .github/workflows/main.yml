@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Create EC2 Runner
         uses: ./.github/workflows/runner-create.yaml
-        if: ${{ github.event_name == 'workflow_dispatch' }}
         
   build:
     runs-on: self-hosted
@@ -52,4 +51,3 @@ jobs:
     steps:
       - name: Destroy EC2 Runner
         uses: ./.github/workflows/runner-destroy.yaml
-        if: ${{ github.event_name == 'workflow_dispatch' }}
