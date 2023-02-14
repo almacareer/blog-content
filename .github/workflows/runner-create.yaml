@@ -20,7 +20,7 @@ jobs:
           region: eu-west-1
           ami-id: ami-0d5d9d301c853a04a
           instance-type: t2.micro
-          subnet-id: subnet-0123456789abcdefg
-          security-group-ids: sg-0123456789abcdefg
+          subnet-id: subnet-0114278bab913da56
+          security-group-ids: sg-00569d47240ff3c20
           github-repository: almacareer/blog-content
           github-runner-token: ${{ secrets.GITHUB_RUNNER_TOKEN }}
