@@ -21,7 +21,7 @@ jobs:
         uses: machulav/ec2-github-runner@v2
         with:
           mode: start
-          ec2-image-id: ami-0e1dc7c0757fa9cdc
+          ec2-image-id: ami-05f7491af5eef733a
           ec2-instance-type: t2.micro
           subnet-id: subnet-0114278bab913da56
           security-group-id: sg-00569d47240ff3c20
@@ -40,14 +40,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-
-      - name: Install docker
-        run: |
-          # make sure we have docker installed
-          yum update -y
-          amazon-linux-extras install docker
-          service docker start
-          usermod -a -G docker ec2-user
           
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1-node16
