@@ -51,10 +51,9 @@ jobs:
         ssh-key: ${{ secrets.SSH_KEY }}
 
   cleanup:
-    needs: [build]
+    needs: [build, destroy-runner]
     runs-on: self-hosted
     steps:
       - name: Cleanup
         run: |
           # commands to cleanup after Docker build here
-    needs: [destroy-runner]
