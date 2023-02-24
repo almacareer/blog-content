@@ -2,7 +2,7 @@ This repo is a source code for:
 
 **ENGINEERING BLOG**
 
-Avaiable at: https://engineering-blog.sandbox.dex.almacareer.net/
+Avaiable at: https://engineering-blog.almacareer.tech/
 
 [![CI to ECR](https://github.com/almacareer/blog-content/actions/workflows/build.yml/badge.svg?branch=aws)](https://github.com/almacareer/blog-content/actions/workflows/build.yml)
 

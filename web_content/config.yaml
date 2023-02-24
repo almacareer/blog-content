@@ -82,7 +82,7 @@ params:
   # Enable comments
   comments:
     system: giscus
-    repo: "almacareer/engineering-blog"
+    repo: "almacareer/blog-content"
     repoid: "R_kgDOILksLw"
     category: "Comments"
     categoryid: "DIC_kwDOILksL84CTYY4"
