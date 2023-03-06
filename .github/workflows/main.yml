@@ -22,7 +22,7 @@ jobs:
           mode: start
           ec2-image-id: ami-0e1dc7c0757fa9cdc
           ec2-instance-type: t2.micro
-          subnet-id: subnet-94664ece
+          subnet-id: subnet-0114278bab913da56 
           security-group-id: sg-00569d47240ff3c20
           github-token: ${{ secrets.RUNNER_GH_TOKEN }}
           aws-resource-tags: >
