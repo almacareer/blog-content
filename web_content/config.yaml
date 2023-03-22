@@ -1,4 +1,4 @@
-baseURL: "https://engineering-blog.almacareer.tech/"
+baseURL: "https://blog.almacareer.tech/"
 metaDataFormat: "yaml"
 languageCode: "en-us"
 title: "Engineering Blog"
