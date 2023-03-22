@@ -3,7 +3,7 @@ backend:
   repo: almacareer/engineering-blog
   branch: master
   auth_type: implicit
-  base_url: https://github-oauth.service.prod-internal.consul
+  base_url: https://blog-oauth.dex-prod.almacareer.net
     
 publish_mode: editorial_workflow
 media_folder: "/pictures" # Media files will be stored in the repo under images/uploads
