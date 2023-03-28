@@ -13,4 +13,4 @@ CI/CD:
 - Jenkins Helm Chart editing
 - Spinnaker deployment
 
-*(By Developers Experience)*
+*(By Developers Experience)* ❤️
