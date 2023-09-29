@@ -166,7 +166,7 @@ function executeSearch(term) {
     resultsAvailable = true;
   }
 
-  list.innerHTML = searchitems;
+  list.textContent = searchitems;
   if (results.length > 0) {
     first = list.firstChild.firstElementChild; // first result container — used for checking against keyboard up/down location
     last = list.lastChild.firstElementChild; // last result container — used for checking against keyboard up/down location
